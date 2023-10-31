@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:55:51 by aaugu             #+#    #+#             */
-/*   Updated: 2023/10/31 14:26:50 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/10/31 14:30:46 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,12 @@ private:
 	// int	set_darkest_secret(char *darkest_secret);
 public:
 	PhoneBook(char *first_name, char *last_name, char *nickname, char *phone_number, char *darkest_secret);
-	int	add(char *first_name, char *last_name, char *nickname, char *phone_number, char *darkest_secret);
+	int	add(char *fn, char *ln, char *nn, char *pn, char *ds);
 	int	search();
 	int	exit();
 	~PhoneBook();
 };
 
-PhoneBook::PhoneBook(char *first_name, char *last_name, char *nickname, char *phone_number, char *darkest_secret)
-{
-}
-
-PhoneBook::~PhoneBook()
-{
-}
 
 
 
