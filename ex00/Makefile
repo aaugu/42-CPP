@@ -3,14 +3,15 @@ GREEN	=	\033[0;32m
 CYAN	=	\033[0;36m
 CYAN_B	=	\033[1;96m
 
-NAME	=	cpp00_ex00
-CC		=	g++
-FLAGS	=	-Wall -Wextra -Werror
+NAME	=	megaphone
+CC		=	c++
+FLAGS	=	-Wall -Wextra -Werror -std=c++98
 RM		=	rm -rf
 
-OBJ_D 	=	objs/
 SRC		=	megaphone
 SRCS	=	$(addsuffix .cpp, $(SRC))
+
+OBJ_D 	=	objs/
 OBJ		=	$(SRC:%.c=%.o)
 OBJS	=	$(addprefix $(OBJ_D), $(addsuffix .o, $(OBJ)))
 
