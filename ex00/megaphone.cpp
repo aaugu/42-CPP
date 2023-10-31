@@ -6,12 +6,11 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:31:10 by aaugu             #+#    #+#             */
-/*   Updated: 2023/10/31 13:45:14 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/10/31 13:52:58 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <algorithm>
 
 int	main(int ac, char **av)
 {

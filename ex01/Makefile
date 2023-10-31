@@ -10,8 +10,7 @@ INCLUDE	=	-I
 RM		=	rm -rf
 
 SRC		=	main \
-			# PhoneBook.class \
-			# PhoneBook \
+			PhoneBook \
 
 SRCS	=	$(addsuffix .cpp, $(SRC))
 
