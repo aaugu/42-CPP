@@ -10,6 +10,7 @@ INCLUDE	=	-I
 RM		=	rm -rf
 
 SRC		=	main \
+			Contact \
 			PhoneBook \
 
 SRCS	=	$(addsuffix .cpp, $(SRC))

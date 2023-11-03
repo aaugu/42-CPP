@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 14:29:41 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/02 15:53:34 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/11/03 11:08:56 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ int	PhoneBook::displayMenu( void )
 	std:cout << "'EXIT' : exit phone book" << std::endl;
 }
 
-int	PhoneBook::displayContacts()
+int	PhoneBook::displayContacts(Contact contact)
 {
 	std:cout << "----------------------------------" << std::endl;
 	for(int i = 0; i < getNbContacts(); i++)
 	{
-		Contact::displayContactSummary(_contacts[i])
+		contact.displayContactSummary();
 		std:cout << "----------------------------------" << std::endl;
 	}
 
@@ -48,7 +48,7 @@ int	PhoneBook::add()
 	std::string	nickname = getInput("Nickname");
 	std::string	phone_number = getInput("Phone Number");
 	std::string	darkest_secret = getInput("Darkest secret");
-	
+
 	// std:cout << "Please enter 'First Name' : ";
 	// std::cin >> first_name;
 	// if (!first_name)
