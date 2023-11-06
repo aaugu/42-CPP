@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:55:51 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/06 14:24:25 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/11/06 14:45:35 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,20 @@ class PhoneBook
 
 	private:
 		// Variables
-		int			_nbContacts;
-		Contact		_contacts[8];
+		int		_nbContacts;
+		Contact	_contacts[8];
 		
 		// Functions
 		// std::string	getInput(std::string inputType);
-		void		displayContacts(Contact *_contacts);
+		void	displayContacts(Contact *_contacts);
+		void	printErrWithNewInput(std::string message, void (*func)(void));
 
 		// Setters
-		void		setNbContacts(int nbContacts);
+		void	setNbContacts(int nbContacts);
 		
 		// Getters
-		int			getNbContacts(void);
-		Contact		*getContacts(void);
+		int		getNbContacts(void);
+		Contact	*getContacts(void);
 		
 		
 };

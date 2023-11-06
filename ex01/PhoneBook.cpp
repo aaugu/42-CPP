@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 14:29:41 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/06 14:25:34 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/11/06 14:59:24 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,11 @@ void	PhoneBook::searchContact()
 	if (std::isdigit(id[0]) && id.size() == 1) {
 		if (_contacts[id[0] - '0'].isEmpty() == false)
 			_contacts[id[0] - '0'].displayContactInfos();
-		else {
-			std::cout << "No contact registered at this index, try again." << std::endl;
-			this->searchContact();
-		}
+		else
+			this->printErrWithNewInput("No contact registered at this index, try again.", &this->searchContact);
 	}
-	else {
-		std::cout << "Wrong index, should be a digit between 0 and 8." << std::endl;
-		this->searchContact();
-	}
+	else
+		this->printErrWithNewInput("Wrong index, should be a digit between 0 and 8.", &this->searchContact);
 }
 
 /* ************************************************************************** */
@@ -104,15 +100,22 @@ void	PhoneBook::searchContact()
 void	PhoneBook::displayContacts(Contact *_contacts)
 {
 	if (_contacts) {
-		std::cout << "+----------+----------+----------+----------+" << std::endl;
+		std::cout	<< "+----------+----------+----------+----------+" << std::endl;
 		for(int i = 0; i < this->getNbContacts(); i++)
 		{
 			_contacts[i].displayContactSummary();
-			std::cout << "+----------+----------+----------+----------+" << std::endl;
+			std::cout 	<< "+----------+----------+----------+----------+"
+						<< std::endl;
 		}
 	}
 }
 
+void	PhoneBook::printErrWithNewInput(std::string message, void (*func)(void))
+{
+	system("clear");
+	std::cout << message << std::endl;
+	return (func());
+}
 
 
 /* ************************************************************************** */
