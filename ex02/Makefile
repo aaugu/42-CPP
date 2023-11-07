@@ -9,8 +9,9 @@ FLAGS	=	-Wall -Wextra -Werror -std=c++98
 INCLUDE	=	-I
 RM		=	rm -rf
 
-SRC		=	tests
+SRC		=	tests \
 			Account
+
 SRCS	=	$(addsuffix .cpp, $(SRC))
 
 OBJ_D 	=	objs/
