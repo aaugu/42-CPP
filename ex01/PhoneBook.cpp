@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 14:29:41 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/06 14:59:24 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/11/07 13:32:26 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 PhoneBook::PhoneBook()
 {
+	this->_index = -1;
 	this->_nbContacts = 0;
 }
 
@@ -43,100 +44,137 @@ void	PhoneBook::displayMenu(void)
 	std::cout << "Please enter 'ADD' or 'SEARCH' or 'EXIT' : ";
 }
 
-int	PhoneBook::addContact()
+void	PhoneBook::addContact()
 {
-	// int			id = getNbContacts();
-	// std::string	first_name = getInput("First Name");
-	// std::string	last_name = getInput("Last Name");
-	// std::string	nickname = getInput("Nickname");
-	// std::string	phone_number = getInput("Phone Number");
-	// std::string	darkest_secret = getInput("Darkest secret");
+	std::string	first_name = _getInput("First Name", ALPHA);
+	std::string	last_name = _getInput("Last Name", ALPHA);
+	std::string	nickname = _getInput("Nickname", ALPHA);
+	std::string	phone_number = _getInput("Phone Number", NUM);
+	std::string	darkest_secret = _getInput("Darkest secret", 0);
 
-	// std::cout << "Please enter 'First Name' : ";
-	// std::cin >> first_name;
-	// if (!first_name)
+	this->_index++;
+	if (this->_index == 8)
+		this->_index = 0;
 
-	// if (id == 8) {
-	// 	if (PhoneBook::reorderContacts(_contacts))
-	// 		return (1);
-	// 	if (, id, first_name, last_name, nickname, phone_number, darkest_secret))
-	// 		return (1);
-	// }
-	// else {
-	// 	if (Contact::save(_contacts[id], id, first_name, last_name, nickname, phone_number, darkest_secret))
-	// 		return (1);
-	// }
-
-	return (0);
+	if (this->_contacts[this->_index].save(this->_index, first_name, last_name,
+		nickname, phone_number, darkest_secret))
+	{
+		if (this->_nbContacts < 8)
+			this->_nbContacts++;
+		std::cout << "Contact successfully created." << std::endl;	
+	}
+	else
+	{
+		this->_index--;
+		std::cout << ERR_CREATE_CONTACT << std::endl;
+	}
 }
 
 void	PhoneBook::searchContact()
 {
 	std::string	id;
 
-	if (this->getNbContacts() == 0) {
-		std::cout << "No contact registered yet." << std::endl;
+	if (this->_nbContacts == 0) {
+		std::cout << ERR_PHONEBOOK_EMPTY << std::endl;
 		return ;
 	}
 
-	this->displayContacts(_contacts);
-	std::cout << "Enter the index of the contact you want to display : ";
-	std::cin >> id;
-	
-	if (std::isdigit(id[0]) && id.size() == 1) {
-		if (_contacts[id[0] - '0'].isEmpty() == false)
-			_contacts[id[0] - '0'].displayContactInfos();
+	while (true) {
+		this->_displayContacts();
+		std::cout << "Enter the index of the contact you want to display : ";
+		std::cin >> id;
+		system("clear");
+		if (std::isdigit(id[0]) && id.size() == 1 && id[0] - '0' < 8)
+		{
+			if (this->_contacts[id[0] - '0'].isEmpty())
+				std::cout << ERR_NO_CONTACT << std::endl;
+			else
+			{
+				this->_contacts[id[0] - '0'].displayContactInfos();
+				break;
+			}
+		}
 		else
-			this->printErrWithNewInput("No contact registered at this index, try again.", &this->searchContact);
+			std::cout << ERR_WRONG_INDEX << std::endl;	
 	}
-	else
-		this->printErrWithNewInput("Wrong index, should be a digit between 0 and 8.", &this->searchContact);
 }
 
 /* ************************************************************************** */
 /*                             PRIVATE FUNCTIONS                              */
 /* ************************************************************************** */
 
-void	PhoneBook::displayContacts(Contact *_contacts)
+std::string	PhoneBook::_getInput(std::string inputType, int flag)
 {
-	if (_contacts) {
-		std::cout	<< "+----------+----------+----------+----------+" << std::endl;
-		for(int i = 0; i < this->getNbContacts(); i++)
+	std::string	input;
+	
+	while (true)
+	{
+		std::cout << "Enter " << inputType << " : ";
+		std::cin >> input;
+		system("clear");
+		if (flag == ALPHA)
 		{
-			_contacts[i].displayContactSummary();
-			std::cout 	<< "+----------+----------+----------+----------+"
-						<< std::endl;
+			if (this->_isInputAlpha(input))
+				break;
+		}
+		else if (flag == NUM)
+		{
+			if (this->_isPhoneNumberValid(input))
+				break ;
+		}
+		else
+			break ;
+	}
+	return (input);
+}
+
+bool	PhoneBook::_isPhoneNumberValid(std::string input)
+{
+	if (this->_isInputNum(input) == false)
+	{
+		std::cout << ERR_NOT_ONLY_DIGITS << std::endl;
+		return (false);
+	}
+	if (input.size() < 7 || input.size() > 15)
+	{
+		std::cout << ERR_WRONG_PHONE_NUMBER << std::endl;
+		return (false);
+	}
+	return (true);
+}
+
+bool	PhoneBook::_isInputAlpha(std::string input)
+{
+	for (int i = 0; i < (int)input.size(); i++)
+	{
+		if (std::isalpha(input[i]) == false)
+		{
+			std::cout << ERR_NOT_ALPHA << std::endl;
+			return (false);
 		}
 	}
+	return (true);
 }
 
-void	PhoneBook::printErrWithNewInput(std::string message, void (*func)(void))
+bool	PhoneBook::_isInputNum(std::string input)
 {
-	system("clear");
-	std::cout << message << std::endl;
-	return (func());
+	for (int i = 0; i < (int)input.size(); i++)
+	{
+		if (std::isdigit(input[i]) == false)
+			return (false);
+	}
+	return (true);
 }
 
-
-/* ************************************************************************** */
-/*                                  SETTERS                                   */
-/* ************************************************************************** */
-
-void	PhoneBook::setNbContacts(int nbContacts)
+void	PhoneBook::_displayContacts(void)
 {
-	this->_nbContacts = nbContacts;
-}
-
-/* ************************************************************************** */
-/*                                  GETTERS                                   */
-/* ************************************************************************** */
-
-int	PhoneBook::getNbContacts(void)
-{
-	return (this->_nbContacts);
-}
-
-Contact	*PhoneBook::getContacts(void)
-{
-	return (this->_contacts);
+	std::cout << "+----------+----------+----------+----------+" << std::endl;
+	std::cout << "|  INDEX   |FIRST NAME| LAST NAME| NICKNAME |" << std::endl;
+	std::cout << "+----------+----------+----------+----------+" << std::endl;
+	for(int i = 0; i < this->_nbContacts; i++)
+	{
+		this->_contacts[i].displayContactSummary();
+		std::cout 	<< "+----------+----------+----------+----------+"
+					<< std::endl;
+	}
 }

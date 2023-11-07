@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:19:21 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/06 14:21:26 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/11/07 11:25:58 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(void)
 	PhoneBook	phonebook;
 	std::string	input;
 
+	system("clear");
 	while (true)
 	{
 		phonebook.displayMenu();
@@ -32,7 +33,7 @@ int	main(void)
 		else if ((capitalize(input)).compare("SEARCH") == 0)
 			phonebook.searchContact();
 		else
-			std::cout << input << " : " << "Wrong command." << std::endl << std::endl;
+			std::cout << input << " : " << "Wrong command." << std::endl;
 	}
 	std::cout	<< "Phonebook closed. You have successfully lost all of your contacts." 
 				<< std::endl;
