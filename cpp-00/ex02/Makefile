@@ -6,11 +6,10 @@ CYAN_B	=	\033[1;96m
 NAME	=	bank
 CC		=	c++
 FLAGS	=	-Wall -Wextra -Werror -std=c++98
-INCLUDE	=	-I
+INCLUDE	=	-I ./
 RM		=	rm -rf
 
-SRC		=	tests \
-			Account
+SRC		=	tests Account
 
 SRCS	=	$(addsuffix .cpp, $(SRC))
 
