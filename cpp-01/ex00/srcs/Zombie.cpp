@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:24:44 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/14 12:51:49 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/11/14 15:21:06 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Zombie::Zombie(std::string name)
 
 Zombie::~Zombie()
 {
-	std::cout << this->_name << ": destroyed..." << std::endl;
+	std::cout << this->_name << ": zombie destroyed" << std::endl;
 }
 
 /* ************************************************************************** */
