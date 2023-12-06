@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:19:21 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/07 11:25:58 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/11/24 11:34:54 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	main(void)
 	PhoneBook	phonebook;
 	std::string	input;
 
-	system("clear");
+	std::system("clear");
 	while (true)
 	{
 		phonebook.displayMenu();
 		std::cin >> input;
-		system("clear");
+		std::system("clear");
 		if ((capitalize(input)).compare("EXIT") == 0)
 			break ;
 		else if ((capitalize(input)).compare("ADD") == 0)
@@ -45,7 +45,7 @@ std::string	capitalize(std::string input)
 	if (input.empty())
 		return ("");
 	for (int i = 0; i < (int)input.size(); i++)
-		input[i] = toupper(input[i]);
+		input[i] = std::toupper(input[i]);
 	return (input);
 }
 

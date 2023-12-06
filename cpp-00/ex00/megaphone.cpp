@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:31:10 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/02 09:52:35 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/11/24 11:23:53 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int ac, char **av)
 		return ((std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl), 0);
 	for (int i = 1; i < ac; i++)
 	{
-		for (int j = 0; j < (int)strlen(av[i]); j++)
+		for (int j = 0; j < (int)std::strlen(av[i]); j++)
 			std::cout << (char)toupper(av[i][j]);
 	}
 	std::cout << std::endl;

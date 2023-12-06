@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 13:58:13 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/13 17:02:47 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/11/24 11:46:15 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	Account::makeDeposit(int deposit)
 {
 	if (deposit < 0)
 		return ;
-	_displayTimestamp();
+	Account::_displayTimestamp();
 	std::cout	<< "index:" << this->_accountIndex << ";"
 				<< "p_amount:" << this->_amount << ";"
 				<< "deposit:" << deposit << ";";
@@ -78,7 +78,7 @@ void	Account::makeDeposit(int deposit)
 	this->_nbDeposits++;
 	Account::_totalNbDeposits++;
 	std::cout	<< "amount:" << this->_amount << ";"
-				<< "nb_deposit:" << this->_nbDeposits << std::endl;
+				<< "nb_deposits:" << this->_nbDeposits << std::endl;
 
 }
 
@@ -99,7 +99,7 @@ bool	Account::makeWithdrawal(int withdrawal)
 		Account::_totalNbWithdrawals++;
 		std::cout	<< withdrawal << ";"
 					<< "amount:" << this->_amount << ";"
-					<< "nb_withdrawal:" << this->_nbWithdrawals << std::endl;
+					<< "nb_withdrawals:" << this->_nbWithdrawals << std::endl;
 		return (true);
 	}
 }
