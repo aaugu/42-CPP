@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 10:20:34 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/12 14:09:56 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/13 12:26:55 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 ScavTrap::ScavTrap(void) : ClapTrap()
 {
 	this->_hitPoints = 100;
-	this->_energyPoints = 100;
-	this->_attackDamage = 30;
+	this->_energyPoints = 50;
+	this->_attackDamage = 20;
 	this->_gateGuarding = false;
 	std::cout << "ScavTrap " << this->_name << " recruited." << std::endl;
 }
@@ -29,14 +29,14 @@ ScavTrap::ScavTrap(void) : ClapTrap()
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
 	this->_hitPoints = 100;
-	this->_energyPoints = 100;
-	this->_attackDamage = 30;
+	this->_energyPoints = 50;
+	this->_attackDamage = 20;
 	this->_gateGuarding = false;
 	std::cout << "ScavTrap " << this->_name << " recruited." << std::endl;
 }
 
-ScavTrap::ScavTrap(ScavTrap& ScavTrap) : ClapTrap(ScavTrap) {
-	this->operator=(ScavTrap);
+ScavTrap::ScavTrap(ScavTrap& scavTrap) : ClapTrap(scavTrap) {
+	this->operator=(scavTrap);
 	std::cout << "ScavTrap " << this->_name << " cloned." << std::endl;
 }
 

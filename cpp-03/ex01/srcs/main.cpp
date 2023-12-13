@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 14:59:39 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/12 14:33:06 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/13 15:21:56 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(void)
 {
 	ScavTrap	wol("Leenae");
 	ScavTrap	zenos("Zenos");
-	ClapTrap	tataru("Tataru");
+	ClapTrap	alphinaud("Alphinaud");
 
 	std::cout << std::endl;
 	wol.guardGate();
@@ -26,17 +26,17 @@ int	main(void)
 
 	for (int i = 0; i < 5; i++)
 	{
-		wol.attack("Zenos");		
+		wol.attack("Zenos");
 		zenos.takeDamage(20);
 		zenos.beRepaired(1);
 		zenos.attack("Leenae");
 		wol.takeDamage(0);
 		std::cout << std::endl;
 	}
-	
-	tataru.attack("Zenos");
+
+	alphinaud.attack("Zenos");
 	zenos.takeDamage(0);
-	wol.attack("Zenos");	
+	wol.attack("Zenos");
 	zenos.takeDamage(20);
 	zenos.beRepaired(1);
 	zenos.attack("Leenae");

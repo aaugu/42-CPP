@@ -6,42 +6,40 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:24:57 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/12 14:30:10 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/13 15:40:09 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "../includes/ScavTrap.hpp"
+#include "../includes/FragTrap.hpp"
 
 /* ************************************************************************** */
 /*                          CONSTRUCTORS & DESTRUCTOR                         */
 /* ************************************************************************** */
 
-ScavTrap::ScavTrap(void) : ClapTrap()
+FragTrap::FragTrap(void) : ClapTrap()
 {
 	this->_hitPoints = 100;
 	this->_energyPoints = 100;
 	this->_attackDamage = 30;
-	this->_gateGuarding = false;
-	std::cout << "ScavTrap " << this->_name << " recruited." << std::endl;
+	std::cout << "FragTrap " << this->_name << " recruited." << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
+FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
 	this->_hitPoints = 100;
 	this->_energyPoints = 100;
 	this->_attackDamage = 30;
-	this->_gateGuarding = false;
-	std::cout << "ScavTrap " << this->_name << " recruited." << std::endl;
+	std::cout << "FragTrap " << this->_name << " recruited." << std::endl;
 }
 
-ScavTrap::ScavTrap(ScavTrap& ScavTrap) : ClapTrap(ScavTrap) {
-	this->operator=(ScavTrap);
-	std::cout << "ScavTrap " << this->_name << " cloned." << std::endl;
+FragTrap::FragTrap(FragTrap& fragTrap) : ClapTrap(fragTrap) {
+	this->operator=(fragTrap);
+	std::cout << "FragTrap " << this->_name << " cloned." << std::endl;
 }
 
-ScavTrap::~ScavTrap(void) {
-	std::cout << "ScavTrap " << this->_name << " dismissed." << std::endl;
+FragTrap::~FragTrap(void) {
+	std::cout << "FragTrap " << this->_name << " dismissed." << std::endl;
 }
 
 /* ************************************************************************** */
@@ -49,7 +47,7 @@ ScavTrap::~ScavTrap(void) {
 /* ************************************************************************** */
 
 // ---------------------------- Copy assignment ----------------------------- //
-ScavTrap&	ScavTrap::operator=(const ScavTrap& rhs)
+FragTrap&	FragTrap::operator=(const FragTrap& rhs)
 {
 	if (this != &rhs)
 	{
@@ -64,3 +62,12 @@ ScavTrap&	ScavTrap::operator=(const ScavTrap& rhs)
 /* ************************************************************************** */
 /*                              PUBLIC FUNCTIONS                              */
 /* ************************************************************************** */
+
+void	FragTrap::highFivesGuys(void)
+{
+	this->healthBuff = true;
+	std::cout	<< "FragTrap " << this->_name
+				<< " raise hands for high five 'I love you guys'. "
+				<< "No one returns it but you get a health regen bonus !"
+				<< std::endl;
+}

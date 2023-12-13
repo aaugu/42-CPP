@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 10:20:34 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/12 14:30:02 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/13 12:27:16 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	std::cout << "ScavTrap " << this->_name << " recruited." << std::endl;
 }
 
-ScavTrap::ScavTrap(ScavTrap& ScavTrap) : ClapTrap(ScavTrap) {
-	this->operator=(ScavTrap);
+ScavTrap::ScavTrap(ScavTrap& scavTrap) : ClapTrap(scavTrap) {
+	this->operator=(scavTrap);
 	std::cout << "ScavTrap " << this->_name << " cloned." << std::endl;
 }
 

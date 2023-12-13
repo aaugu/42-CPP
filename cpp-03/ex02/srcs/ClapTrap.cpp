@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 14:54:15 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/12 14:15:51 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/13 15:47:16 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 	if (amount >= this->_hitPoints)
 	{
 		this->_hitPoints = 0;
-		std::cout	<< "ClapTrap " << this->_name << " receives " << amount << " point(s) of damage anyway"
+		std::cout	<< "ClapTrap " << this->_name << " receives " << amount << " point(s) of damage"
 					<< " and is now dead." << std::endl;
 	}
 	else if (amount == 0)
@@ -104,8 +104,8 @@ void	ClapTrap::takeDamage(unsigned int amount)
 	{
 		this->_hitPoints -= amount;
 		std::cout	<< "ClapTrap " << this->_name
-					<< " receives " << amount << " point(s) of damage anyway"
-					<< " and has now " << this->_hitPoints << " HP left." << std::endl;	
+					<< " receives " << amount << " point(s) of damage"
+					<< " and has now " << this->_hitPoints << " HP left." << std::endl;
 	}
 }
 
@@ -125,7 +125,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 
 	this->_energyPoints--;
 	this->_hitPoints += amount;
-	std::cout	<< "ClapTrap " << this->_name 
+	std::cout	<< "ClapTrap " << this->_name
 				<< " heals himself for " << amount << " point(s) of HP (" << this->_hitPoints << "HP left)"
 				<< " and has now " << this->_energyPoints << " energy point(s) left."
 				<< std::endl;
