@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:49:15 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/24 10:35:46 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/08 15:52:26 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ Fixed::Fixed(const int nb) {
 
 Fixed::Fixed(const float nb) {
 	// std::cout << "Float constructor called" << std::endl;
-	this->_fixedValue = std::roundf(nb * (1 << this->_nbFractionalBits));
+	this->_fixedValue = (roundf(nb * (1 << this->_nbFractionalBits)));
 }
 
 Fixed::~Fixed(void) {
@@ -51,7 +51,7 @@ int	Fixed::toInt(void) const {
 }
 
 float Fixed::toFloat(void) const {
-	return ((float)this->_fixedValue / (float)(1 << this->_nbFractionalBits));
+	return ((float)this->_fixedValue / (1 << this->_nbFractionalBits));
 }
 
 Fixed&	Fixed::min(Fixed& a, Fixed& b) {
@@ -118,35 +118,35 @@ Fixed	Fixed::operator*(const Fixed& rhs) const {
 Fixed	Fixed::operator/(const Fixed& rhs) const {
 	if (rhs._fixedValue == 0)
 	{
-		std::cout << "Error: You can't divide by 0" << std::endl;
+		std::cout << "Error: You can't divide by 0 => " ;
 		return (Fixed());
 	}
-	return (Fixed(this->_fixedValue / rhs._fixedValue));
+	return (Fixed(this->_fixedValue / rhs.getRawBits()));
 }
 
 // ------------------------------- Comparison ------------------------------- //
 bool	Fixed::operator>(const Fixed& rhs) const {
-	return (this->_fixedValue > rhs._fixedValue);
+	return (this->_fixedValue > rhs.getRawBits());
 }
 
 bool	Fixed::operator<(const Fixed& rhs) const {
-	return (this->_fixedValue < rhs._fixedValue);
+	return (this->_fixedValue < rhs.getRawBits());
 }
 
 bool	Fixed::operator>=(const Fixed& rhs) const {
-	return (this->_fixedValue >= rhs._fixedValue);
+	return (this->_fixedValue >= rhs.getRawBits());
 }
 
 bool	Fixed::operator<=(const Fixed& rhs) const {
-	return (this->_fixedValue <= rhs._fixedValue);
+	return (this->_fixedValue <= rhs.getRawBits());
 }
 
 bool	Fixed::operator==(const Fixed& rhs) const {
-	return (this->_fixedValue == rhs._fixedValue);
+	return (this->_fixedValue == rhs.getRawBits());
 }
 
 bool	Fixed::operator!=(const Fixed& rhs) const {
-	return (this->_fixedValue != rhs._fixedValue);
+	return (this->_fixedValue != rhs.getRawBits());
 }
 
 // ------------------- Incrementation / Decrementation --------------------- //

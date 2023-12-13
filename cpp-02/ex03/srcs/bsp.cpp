@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:25:13 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/24 12:51:06 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/08 15:56:48 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ const Fixed getAbsoluteValue(const Fixed value);
 *	BSP stands for Binary space partitioning.
 */
 
-bool bsp( Point const a, Point const b, Point const c, Point const point)
+bool bsp(Point const a, Point const b, Point const c, Point const point)
 {
 	const Fixed abcArea = calculateTriangleArea(a, b, c);
 
@@ -30,8 +30,10 @@ bool bsp( Point const a, Point const b, Point const c, Point const point)
 	std::cout << abcArea << " " << abpArea << " " << acpArea << " " << bcpArea << std::endl;
  
 	if (abpArea == 0 || acpArea == 0 || bcpArea == 0)
-		return (std::cout	<< "Point is on the edge or vertex of the triangle." 
-							<< std::endl, false);
+	{
+		std::cout	<< "Point is on an edge or a vertex of the triangle." << std::endl;
+		return (false);
+	}
 	return (abcArea == (abpArea + acpArea + bcpArea));
 }
 

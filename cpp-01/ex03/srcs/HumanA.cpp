@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:01:29 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/16 11:37:13 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/07 15:08:34 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,9 @@
 /*                          CONSTRUCTOR & DESTRUCTOR                          */
 /* ************************************************************************** */
 
-HumanA::HumanA(std::string name, Weapon& weapon) : _name(name), _weapon(weapon)
-{
-}
+HumanA::HumanA(std::string name, Weapon& weapon) : _name(name), _weapon(weapon) {}
 
-HumanA::~HumanA(void)
-{
-}
+HumanA::~HumanA(void) {}
 
 /* ************************************************************************** */
 /*                              PUBLIC FUNCTIONS                              */

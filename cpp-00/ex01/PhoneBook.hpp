@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:55:51 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/07 13:18:06 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/07 14:39:52 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@
 
 // Error messages
 # define ERR_PHONEBOOK_EMPTY "Phone book empty : no contact registered yet."
-# define ERR_WRONG_INDEX "Wrong index, should be a digit between 0 and 8."
+# define ERR_WRONG_INDEX "Wrong index, should be a digit between 0 and 7."
 # define ERR_NO_CONTACT "No contact registered at this index, try again."
 # define ERR_WRONG_PHONE_NUMBER "A valid phone number contains between 7 and 15 digits."
 # define ERR_NOT_ONLY_DIGITS "A valid phone number can contain only digits."
 # define ERR_NOT_ALPHA "Should contain only alphabetical letters."
 # define ERR_CREATE_CONTACT "Problem while creating contact."
+# define MSG_CLOSE_PHONEBOOK "Phonebook closed. You have successfully lost all of your contacts."
+
 
 // Flags
 # define ALPHA 1
@@ -47,6 +49,11 @@ class PhoneBook
 		
 		// Functions
 		std::string	_getInput(std::string inputType, int flag);
+		void		_registerContact(	std::string firstName,
+										std::string lastName,
+										std::string nickname,
+										std::string phoneNumber,
+										std::string darkestSecret);
 		bool		_isInputAlpha(std::string input);
 		bool		_isPhoneNumberValid(std::string input);
 		bool		_isInputNum(std::string input);

@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 09:49:15 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/16 11:37:32 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/07 15:03:45 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Weapon::~Weapon(void)
 /*                              GETTERS & SETTERS                             */
 /* ************************************************************************** */
 
-const std::string	Weapon::getType(void) const
+const std::string&	Weapon::getType(void) const
 {
 	return (this->_type);
 }

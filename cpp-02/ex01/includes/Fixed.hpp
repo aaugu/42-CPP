@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:49:27 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/20 15:04:01 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/08 15:40:21 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 
 class Fixed
 {
+	private:
+		int					_fixedValue;
+		static const int	_nbFractionalBits = 8;
+
 	public:
 		// Constructors
 		Fixed(void);
@@ -34,11 +38,7 @@ class Fixed
 		void	setRawBits(int const raw);
 
 		int		toInt(void) const;
-		float	toFloat( void ) const;
-
-	private:
-		int					_fixedValue;
-		static const int	_nbFractionalBits = 8;
+		float	toFloat(void) const;
 
 };
 

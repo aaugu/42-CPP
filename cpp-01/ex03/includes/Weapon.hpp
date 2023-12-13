@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 09:49:50 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/16 11:37:28 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/07 15:03:38 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Weapon
 		Weapon(std::string type);
 		~Weapon(void);
 
-		const std::string	getType(void) const;
+		const std::string&	getType(void) const;
 		void				setType(std::string type);
 
 	private:

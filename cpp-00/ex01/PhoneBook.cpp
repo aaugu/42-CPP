@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 14:29:41 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/07 13:32:26 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/07 14:41:52 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,28 +46,27 @@ void	PhoneBook::displayMenu(void)
 
 void	PhoneBook::addContact()
 {
-	std::string	first_name = _getInput("First Name", ALPHA);
-	std::string	last_name = _getInput("Last Name", ALPHA);
+	std::string	firstName = _getInput("First Name", ALPHA);
+	if (firstName.compare("") == 0)
+		return ;
+
+	std::string	lastName = _getInput("Last Name", ALPHA);
+	if (lastName.compare("") == 0)
+		return ;
+
 	std::string	nickname = _getInput("Nickname", ALPHA);
-	std::string	phone_number = _getInput("Phone Number", NUM);
-	std::string	darkest_secret = _getInput("Darkest secret", 0);
+	if (nickname.compare("") == 0)
+		return ;
 
-	this->_index++;
-	if (this->_index == 8)
-		this->_index = 0;
+	std::string	phoneNumber = _getInput("Phone Number", NUM);
+	if (phoneNumber.compare("") == 0)
+		return ;
 
-	if (this->_contacts[this->_index].save(this->_index, first_name, last_name,
-		nickname, phone_number, darkest_secret))
-	{
-		if (this->_nbContacts < 8)
-			this->_nbContacts++;
-		std::cout << "Contact successfully created." << std::endl;	
-	}
-	else
-	{
-		this->_index--;
-		std::cout << ERR_CREATE_CONTACT << std::endl;
-	}
+	std::string	darkestSecret = _getInput("Darkest secret", 0);
+	if (darkestSecret.compare("") == 0)
+		return ;
+
+	this->_registerContact(firstName, lastName, nickname, phoneNumber, darkestSecret);
 }
 
 void	PhoneBook::searchContact()
@@ -83,6 +82,11 @@ void	PhoneBook::searchContact()
 		this->_displayContacts();
 		std::cout << "Enter the index of the contact you want to display : ";
 		std::cin >> id;
+		if (std::cin.eof())
+		{
+			system("clear");
+			return ;
+		}
 		system("clear");
 		if (std::isdigit(id[0]) && id.size() == 1 && id[0] - '0' < 8)
 		{
@@ -111,6 +115,8 @@ std::string	PhoneBook::_getInput(std::string inputType, int flag)
 	{
 		std::cout << "Enter " << inputType << " : ";
 		std::cin >> input;
+		if (std::cin.eof())
+			return (system("clear"), "");
 		system("clear");
 		if (flag == ALPHA)
 		{
@@ -126,6 +132,30 @@ std::string	PhoneBook::_getInput(std::string inputType, int flag)
 			break ;
 	}
 	return (input);
+}
+
+void		PhoneBook::_registerContact(std::string firstName,
+										std::string lastName,
+										std::string nickname,
+										std::string phoneNumber,
+										std::string darkestSecret)
+{
+	this->_index++;
+	if (this->_index == 8)
+		this->_index = 0;
+
+	if (this->_contacts[this->_index].save(this->_index, firstName, lastName,
+		nickname, phoneNumber, darkestSecret))
+	{
+		if (this->_nbContacts < 8)
+			this->_nbContacts++;
+		std::cout << "Contact successfully created." << std::endl;	
+	}
+	else
+	{
+		this->_index--;
+		std::cout << std::endl << ERR_CREATE_CONTACT << std::endl;
+	}
 }
 
 bool	PhoneBook::_isPhoneNumberValid(std::string input)

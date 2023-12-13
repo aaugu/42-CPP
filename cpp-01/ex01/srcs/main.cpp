@@ -6,13 +6,11 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:25:22 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/16 09:21:04 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/07 12:51:48 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-
-Zombie	*zombieHorde( int N, std::string name );
+#include "../includes/Zombie.hpp"
 
 int	main(void)
 {

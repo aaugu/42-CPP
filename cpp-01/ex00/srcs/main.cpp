@@ -6,14 +6,11 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:46:16 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/14 15:26:05 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/07 12:48:15 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-
-Zombie*	newZombie(std::string name);
-void	randomChump( std::string name );
+#include "../includes/Zombie.hpp"
 
 int	main(void)
 {

@@ -6,11 +6,11 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 09:52:56 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/17 10:56:23 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/07 15:45:21 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Harl.hpp"
+#include "../includes/Harl.hpp"
 
 int	main(void)
 {
@@ -21,6 +21,5 @@ int	main(void)
 	harl.complain("WARNING");
 	harl.complain("ERROR");
 	harl.complain("INVALID");
-	harl.complain("");
 	return (0);
 }

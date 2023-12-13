@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 09:31:11 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/07 13:33:33 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/07 14:40:16 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ bool	Contact::isEmpty(void)
 
 void	Contact::_printRightAlignedInfo(std::string info)
 {
-	if (info.size() >= 10)
+	if (info.size() >= 11)
 	{
 		info.resize(10);
 		info[9] = '.';

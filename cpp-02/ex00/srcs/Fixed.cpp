@@ -6,12 +6,12 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 09:26:49 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/20 11:23:40 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/08 10:23:15 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Fixed.hpp"
+#include "../includes/Fixed.hpp"
 
 /* ************************************************************************** */
 /*                          CONSTRUCTORS & DESTRUCTOR                         */
@@ -57,7 +57,7 @@ int Fixed::getRawBits(void) const
 }
 
 
-void Fixed::setRawBits( int const raw)
+void Fixed::setRawBits(int const raw)
 {
 	this->_fixedValue = raw;
 }

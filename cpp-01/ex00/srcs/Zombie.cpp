@@ -6,24 +6,20 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:24:44 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/14 15:26:23 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/07 12:54:32 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Zombie.hpp"
+#include "../includes/Zombie.hpp"
 
 /* ************************************************************************** */
 /*                          CONSTRUCTOR & DESTRUCTOR                          */
 /* ************************************************************************** */
 
-Zombie::Zombie(std::string name)
-{
-	this->_name = name;
-}
+Zombie::Zombie(std::string name) : _name(name) {}
 
-Zombie::~Zombie()
-{
+Zombie::~Zombie() {
 	std::cout << this->_name << ": zombie destroyed" << std::endl;
 }
 

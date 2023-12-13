@@ -6,25 +6,21 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 09:54:06 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/17 11:03:35 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/07 15:49:09 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
-#include "Harl.hpp"
+#include "../includes/Harl.hpp"
 
 /* ************************************************************************** */
 /*                          CONSTRUCTOR & DESTRUCTOR                          */
 /* ************************************************************************** */
 
-Harl::Harl(void)
-{
-}
+Harl::Harl(void) {}
 
-Harl::~Harl(void)
-{
-}
+Harl::~Harl(void) {}
 
 /* ************************************************************************** */
 /*                              PUBLIC FUNCTIONS                              */
@@ -32,10 +28,10 @@ Harl::~Harl(void)
 
 void Harl::complain(std::string level)
 {
-	std::string	levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	
 	typedef void (Harl::*Complains)(void);
 	Complains	complains[4] = { &Harl::_debug, &Harl::_info, &Harl::_warning, &Harl::_error };
+	
+	std::string	levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -82,7 +78,6 @@ void	Harl::_warning(void)
 void	Harl::_error(void)
 {
 	std::cout 	<< "[ ERROR ] " << std::endl
-				<< "This is unacceptable! "
-				"I want to speak to the manager now."
+				<< "This is unacceptable! I want to speak to the manager now."
 				<< std::endl;
 }

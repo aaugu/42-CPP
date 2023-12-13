@@ -6,17 +6,19 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 12:51:22 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/17 09:44:52 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/07 16:43:28 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <errno.h>
 
 int		openInFileStream(std::ifstream* iFS, std::string inFile);
 int		openOutFileStream(std::ofstream* oFS, std::string outFile);
 void	fillOutFile(std::ifstream* iFS,	std::ofstream* oFS, std::string target, std::string replace);
+void	replaceTarget(std::string *line, std::string target, std::string replace, size_t pos);
 
 /*
 	Create a program that takes three parameters in the following order: a filename and
@@ -49,29 +51,56 @@ int	main(int ac, char **av)
 
 int	openInFileStream(std::ifstream* iFS, std::string inFile)
 {
-	(*iFS).open(inFile, std::fstream::in);
-	if (!(*iFS).is_open())
-		return (std::cout << "Error: Could not open file" << std::endl, -1);
+	iFS->open(inFile, std::fstream::in);
+	if (!iFS->good())
+	{
+		std::cout << "Error:" << inFile << ": " << strerror(errno) << std::endl;
+		return (-1);
+	}
 	return (0);
 }
 
 int	openOutFileStream(std::ofstream* oFS, std::string outFile)
 {
-	(*oFS).open(outFile, std::fstream::out);
-	if (!(*oFS).is_open())
-		return (std::cout << "Error: Could not create file" << std::endl, -1);
+	oFS->open(outFile, std::fstream::out);
+	if (!oFS->good())
+	{
+		std::cout << "Error:" << outFile << ": " << strerror(errno) << std::endl;
+		return (-1);
+	}
 	return (0);
 }
 
 void	fillOutFile(std::ifstream* iFS,	std::ofstream* oFS, std::string target, std::string replace)
 {
-	std::string		line;
+	std::string	line;
+	size_t		pos = 0;
 
 	while (std::getline(*iFS, line))
 	{
-		if (line.compare(target) == 0)
-			*oFS << replace << std::endl;
-		else
+		if (target.empty())
 			*oFS << line << std::endl;
+		else
+		{
+			pos = line.find(target.c_str(), 0, target.size());
+			if (pos == std::string::npos)
+				*oFS << line << std::endl;
+			else
+			{
+				replaceTarget(&line, target, replace, pos);
+				*oFS << line << std::endl;
+			}
+		}
+	}
+}
+
+void	replaceTarget(std::string *line, std::string target, std::string replace, size_t pos)
+{
+	while (pos != std::string::npos)
+	{
+		line->erase(pos, target.size());
+		if (!replace.empty())
+			line->insert(pos, replace);
+		pos = line->find(target.c_str(), 0, target.size());
 	}
 }

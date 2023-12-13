@@ -6,13 +6,13 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:49:15 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/20 15:04:10 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/08 15:29:16 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <cmath>
-#include "Fixed.hpp"
+#include "../includes/Fixed.hpp"
 
 /* ************************************************************************** */
 /*                          CONSTRUCTORS & DESTRUCTOR                         */
@@ -30,9 +30,15 @@ Fixed::Fixed(const Fixed& fixed) {
 
 Fixed::Fixed(const int nb) {
 	std::cout << "Int constructor called" << std::endl;
-	this->_fixedValue = nb * (1 << this->_nbFractionalBits);
+	this->_fixedValue = nb << this->_nbFractionalBits;
 }
 
+/* The roundf() function returns x rounded to the nearest integer n , rounding
+halfway cases away from zero, regardless of the current rounding direction
+
+Floating point numbers don't have bits at the level of value-representation, 
+which is why you can't apply bitwise operations to them
+*/
 Fixed::Fixed(const float nb) {
 	std::cout << "Float constructor called" << std::endl;
 	this->_fixedValue = (roundf(nb * (1 << this->_nbFractionalBits)));
@@ -65,7 +71,6 @@ std::ostream&	operator<<(std::ostream& oS, const Fixed& rhs) {
 int Fixed::getRawBits(void) const {
 	return (this->_fixedValue);
 }
-
 
 void Fixed::setRawBits(int const raw) {
 	this->_fixedValue = raw;

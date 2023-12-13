@@ -6,12 +6,12 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 09:24:42 by aaugu             #+#    #+#             */
-/*   Updated: 2023/11/20 09:25:49 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/08 10:10:01 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Fixed.hpp"
+#include "../includes/Fixed.hpp"
 
 int main( void ) {
 	Fixed a;
