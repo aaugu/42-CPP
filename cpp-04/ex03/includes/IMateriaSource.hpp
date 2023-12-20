@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 17:07:44 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/20 17:14:05 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/20 17:23:15 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,12 @@
 
 class IMateriaSource
 {
-	private:
-		/* data */
 	public:
-		// Constructors and Destructor
-		IMateriaSource(void);
-		IMateriaSource(const IMateriaSource& src);
-		~IMateriaSource(void);
+		virtual ~IMateriaSource() {}
 
-		// Copy assignment overload operator
-		IMateriaSource&	operator=(const IMateriaSource& src);
+		// Methods
+		virtual void learnMateria(AMateria*) = 0;
+		virtual AMateria* createMateria(std::string const & type) = 0;
 };
 
 

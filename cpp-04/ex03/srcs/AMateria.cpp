@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 17:06:04 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/20 17:12:01 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/20 17:26:30 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 
 AMateria::AMateria(void) {
 	std::cout << "[AMateria] Default constructor called." << std::endl;
+}
+
+AMateria::AMateria(std::string const & type) : type_(type) {
+	std::cout << "[AMateria] Argument constructor called." << std::endl;
 }
 
 AMateria::AMateria(const AMateria& src) {
