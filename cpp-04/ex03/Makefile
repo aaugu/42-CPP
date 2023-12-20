@@ -3,14 +3,14 @@ GREEN	=	\033[0;32m
 CYAN	=	\033[0;36m
 CYAN_B	=	\033[1;96m
 
-NAME	=	animals
+NAME	=	inventory
 CC		=	c++
 FLAGS	=	-Wall -Wextra -Werror -std=c++98
 INCLUDE	=	-I includes
 RM		=	rm -rf
 
 SRC_D 	=	srcs/
-SRC		=	main AAnimal Cat Dog WrongAnimal WrongCat Brain
+SRC		=	main AMateria ICharacter IMateriaSource
 SRCS	=	$(addprefix  $(SRC_D), $(addsuffix .cpp, $(SRC)))
 
 OBJ_D 	=	objs/
