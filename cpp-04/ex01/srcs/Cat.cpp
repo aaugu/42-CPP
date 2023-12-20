@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:12:17 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/19 12:28:27 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/20 16:22:45 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Cat::Cat(void) : Animal() {
 	this->_brain = new Brain;
 }
 
-Cat::Cat(const Cat& src) : Animal() {
+Cat::Cat(const Cat& src) : Animal(), _brain(NULL) {
 	std::cout << "[Cat] Copy constructor called." << std::endl;
 	*this = src;
 }
@@ -44,7 +44,12 @@ Cat&	Cat::operator=(const Cat& src)
 {
 	std::cout << "[Cat] Copy assignment overload operator called." << std::endl;
 	if (this != &src)
+	{
 		this->_type = src.getType();
+		if (this->_brain != NULL)
+			delete this->_brain;
+		this->_brain = new Brain(*src._brain);
+	}
 	return (*this);
 }
 
@@ -54,4 +59,12 @@ Cat&	Cat::operator=(const Cat& src)
 
 void	Cat::makeSound(void) const {
 	std::cout << "Meow" << std::endl;
+}
+
+/* ************************************************************************** */
+/*                                  ACCESSORS                                 */
+/* ************************************************************************** */
+
+Brain*	Cat::getBrain() {
+	return (this->_brain);
 }

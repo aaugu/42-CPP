@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:13:08 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/19 11:57:43 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/20 16:22:29 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CAT_HPP
 
 # include "../includes/Animal.hpp"
+# include "../includes/Brain.hpp"
 
 class Cat : public Animal
 {
@@ -31,6 +32,9 @@ class Cat : public Animal
 
 		// Public function
 		void	makeSound(void) const;
+
+		// Accessor
+		Brain*	getBrain();
 };
 
 #endif

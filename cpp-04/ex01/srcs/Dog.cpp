@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:12:25 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/19 12:28:31 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/20 16:22:53 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Dog::Dog(void) : Animal() {
 	this->_brain = new Brain;
 }
 
-Dog::Dog(const Dog& src) : Animal() {
+Dog::Dog(const Dog& src) : Animal(), _brain(NULL) {
 	std::cout << "[Dog] Copy constructor called." << std::endl;
 	*this = src;
 }
@@ -42,7 +42,12 @@ Dog&	Dog::operator=(const Dog& src)
 {
 	std::cout << "[Dog] Copy assignment overload operator called." << std::endl;
 	if (this != &src)
+	{
 		this->_type = src.getType();
+		if (this->_brain != NULL)
+			delete this->_brain;
+		this->_brain = new Brain(*src._brain);
+	}
 	return (*this);
 }
 
@@ -53,4 +58,12 @@ Dog&	Dog::operator=(const Dog& src)
 
 void	Dog::makeSound(void) const {
 	std::cout << "Woof" << std::endl;
+}
+
+/* ************************************************************************** */
+/*                                  ACCESSORS                                 */
+/* ************************************************************************** */
+
+Brain*	Dog::getBrain() {
+	return (this->_brain);
 }

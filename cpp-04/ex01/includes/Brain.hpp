@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 11:39:23 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/19 11:40:54 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/20 16:26:34 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ class Brain
 		Brain&	operator=(const Brain& src);
 
 		// Accessors
-		std::string	getIdeabyId(unsigned int i) const;
+		std::string	getIdeabyId(int i) const;
+		void		setIdeabyId(const std::string idea, int i);
 
 };
 

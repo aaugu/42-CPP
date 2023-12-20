@@ -6,14 +6,13 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:12:36 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/19 11:58:04 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/20 16:22:24 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DOG_HPP
 # define DOG_HPP
 
-# include "../includes/Dog.hpp"
 # include "../includes/Animal.hpp"
 # include "../includes/Brain.hpp"
 
@@ -33,6 +32,9 @@ class Dog : public Animal
 
 		// Public function
 		void	makeSound(void) const;
+
+		// Accessor
+		Brain*	getBrain();
 };
 
 #endif

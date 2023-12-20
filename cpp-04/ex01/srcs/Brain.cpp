@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 11:38:01 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/19 11:41:01 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/20 16:26:49 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Brain::Brain(void) {
 
 Brain::Brain(const Brain& src) {
 	std::cout << "[Brain] Copy constructor called." << std::endl;
-	* this = src;
+	*this = src;
 }
 
 Brain::~Brain(void) {
@@ -52,6 +52,20 @@ Brain&	Brain::operator=(const Brain& src)
 /*                                  ACCESSORS                                 */
 /* ************************************************************************** */
 
-std::string	Brain::getIdeabyId(unsigned int i) const {
+std::string	Brain::getIdeabyId(int i) const {
+	if (i < 0 || i >= 100)
+	{
+		std::cout << "Idea out of range of the brain";
+		return "";
+	}
 	return (this->_ideas[i]);
+}
+
+void	Brain::setIdeabyId(const std::string idea, int i) {
+	if (i < 0 || i >= 100)
+	{
+		std::cout << "Idea out of range of the brain";
+		return ;
+	}
+	this->_ideas[i] = idea;
 }
