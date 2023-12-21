@@ -6,21 +6,18 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 17:35:43 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/20 17:58:22 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/21 14:08:08 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CURE_HPP
 # define CURE_HPP
 
-# include "../includes/AMateria.hpp"
-# include "../includes/ICharacter.hpp"
+# include "AMateria.hpp"
+# include "ICharacter.hpp"
 
 class Cure : public AMateria
 {
-	private:
-		/* data */
-
 	public:
 		// Constructors & Destructor
 		Cure(void);
@@ -31,7 +28,7 @@ class Cure : public AMateria
 		Cure&	operator=(const Cure& src);
 
 		// Public Member functions
-		AMateria*	clone() const;
+		AMateria*	clone(void) const;
 		void		use(ICharacter& target);
 };
 

@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ICharacter.hpp                                     :+:      :+:    :+:   */
+/*   Colors.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/20 17:07:34 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/21 14:11:22 by aaugu            ###   ########.fr       */
+/*   Created: 2023/12/21 14:30:17 by aaugu             #+#    #+#             */
+/*   Updated: 2023/12/21 15:17:27 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ICHARACTER_HPP
-# define ICHARACTER_HPP
+#ifndef COLORS_H
+# define COLORS_H
 
-# include <string>
-# include "AMateria.hpp"
+# define END	"\e[0m"
 
-class AMateria;
-
-class ICharacter
-{
-	public:
-		virtual ~ICharacter() {}
-
-		virtual void equip(AMateria* m) = 0;
-		virtual void unequip(int idx) = 0;
-		virtual void use(int idx, ICharacter& target) = 0;
-
-		virtual std::string const & getName() const = 0;
-};
+# define BLACK	"\e[30m"
+# define RED	"\e[31m"
+# define GREEN	"\e[92m"
+# define YELLOW	"\e[33m"
+# define BLUE	"\e[34m"
+# define PURPLE	"\e[35m"
+# define CYAN	"\e[96m"
+# define WHITE	"\e[37m"
 
 #endif

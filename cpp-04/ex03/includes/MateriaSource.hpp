@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 17:36:00 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/20 18:13:31 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/21 13:22:41 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@
 class MateriaSource : public IMateriaSource
 {
 	private:
-		AMateria*	materias[4];
+		AMateria*	materias_[4];
+
+		void	initializeMaterias_(void);
+		void	deleteMaterias_(void);
 
 	public:
 		// Constructors & Destructor
@@ -31,9 +34,10 @@ class MateriaSource : public IMateriaSource
 		// Copy assignment
 		MateriaSource&	operator=(const MateriaSource& src);
 
-		// Methods
-		void		learnMateria(AMateria*);
+		void		learnMateria(AMateria* materia);
 		AMateria*	createMateria(std::string const & type);
+
+
 };
 
 

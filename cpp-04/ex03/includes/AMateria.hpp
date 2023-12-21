@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 17:06:59 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/21 11:13:31 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/21 14:13:47 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ class AMateria
 		AMateria(void);
 		AMateria(std::string const & type);
 		AMateria(const AMateria& src);
-		~AMateria(void);
+		virtual ~AMateria(void);
 
 		// Copy assignment overload operator
 		AMateria&	operator=(const AMateria& src);
 
 		// Methods
-		virtual AMateria*	clone() const = 0;
+		virtual AMateria*	clone(void) const = 0;
 		virtual void 		use(ICharacter& target);
 
 		// Accessors
-		const std::string& getType() const; //Returns the materia type
+		const std::string& getType(void) const; //Returns the materia type
 };
 
 #endif

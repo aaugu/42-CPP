@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:12:17 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/21 10:36:07 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/21 15:00:50 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ Cat::Cat(const Cat& src) : AAnimal(), _brain(NULL) {
 }
 
 Cat::~Cat(void) {
-	std::cout << "[Cat] Destructor called." << std::endl;
 	delete this->_brain;
+	std::cout << "[Cat] Destructor called." << std::endl;
 }
 
 /* ************************************************************************** */
@@ -42,7 +42,6 @@ Cat::~Cat(void) {
 // ---------------------------- Copy assignment ----------------------------- //
 Cat&	Cat::operator=(const Cat& src)
 {
-	std::cout << "[Cat] Copy assignment overload operator called." << std::endl;
 	if (this != &src)
 	{
 		this->_type = src._type;
@@ -50,6 +49,7 @@ Cat&	Cat::operator=(const Cat& src)
 			delete this->_brain;
 		this->_brain = new Brain(*src._brain);
 	}
+	std::cout << "[Cat] Copy assignment overload operator called." << std::endl;
 	return (*this);
 }
 
