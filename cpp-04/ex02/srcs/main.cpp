@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:33:18 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/20 17:02:41 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/21 10:43:55 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,12 @@ void	copyDog(void);
 
 int main(void)
 {
-	testArray();
+	// testArray();
 	// copyCat();
 	// copyDog();
 
 	// Won't compile as Animal is now an abstract class
 	// AAnimal*	animal = new AAnimal();
-	// animal->makeSound();
 	// delete animal;
 
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:12:17 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/20 16:53:49 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/21 10:36:07 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ Cat&	Cat::operator=(const Cat& src)
 	std::cout << "[Cat] Copy assignment overload operator called." << std::endl;
 	if (this != &src)
 	{
-		this->_type = src.getType();
+		this->_type = src._type;
 		if (this->_brain != NULL)
 			delete this->_brain;
 		this->_brain = new Brain(*src._brain);

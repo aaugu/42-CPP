@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 17:34:55 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/20 18:07:17 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/21 11:04:21 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Character : public ICharacter
 {
 	private:
 		std::string	name_;
-		AMateria*	inventory_[4];
+		AMateria*	materias_[4];
 
 	public:
 		// Constructors & Destructor
@@ -39,7 +39,8 @@ class Character : public ICharacter
 		void use(int idx, ICharacter& target);
 
 		// Accessors
-		const std::string& getName() const;
+		const std::string&	getName() const;
+		AMateria* 			getMateriaById(int i) const;
 };
 
 #endif

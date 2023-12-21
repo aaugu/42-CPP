@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 17:07:34 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/20 17:23:10 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/21 11:01:02 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@ class ICharacter
 	public:
 		virtual ~ICharacter() {}
 
-		// Methods
+		// Pure virtual Methods
 		virtual void equip(AMateria* m) = 0;
 		virtual void unequip(int idx) = 0;
 		virtual void use(int idx, ICharacter& target) = 0;
 
-		// Accessors
 		virtual std::string const & getName() const = 0;
 };
 

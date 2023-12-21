@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 10:20:34 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/13 12:26:55 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/15 10:10:34 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,12 @@ void	ScavTrap::attack(const std::string& target)
 
 void	ScavTrap::guardGate(void)
 {
+	if (this->_hitPoints == 0)
+	{
+		std::cout	<< "ScavTrap " << this->_name << " is kind of guarding the floor"
+					<< " because he is dead." << std::endl;
+		return ;
+	}
 	this->_gateGuarding = true;
 	std::cout	<< "ScavTrap " << this->_name << " is now guarding the Crystal Tower Gate."
 				<< std::endl;

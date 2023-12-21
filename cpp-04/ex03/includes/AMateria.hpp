@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 17:06:59 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/20 18:06:26 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/21 11:13:31 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ class AMateria
 		AMateria&	operator=(const AMateria& src);
 
 		// Methods
-		virtual AMateria* clone() const = 0;
-		virtual void use(ICharacter& target);
+		virtual AMateria*	clone() const = 0;
+		virtual void 		use(ICharacter& target);
 
 		// Accessors
 		const std::string& getType() const; //Returns the materia type

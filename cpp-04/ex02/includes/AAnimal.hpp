@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:13:15 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/20 17:12:29 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/21 10:35:16 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class AAnimal
 	public:
 		// Constructors & Destructor
 		AAnimal(void);
-		AAnimal(const std::string type);
+		// AAnimal(const std::string type);
 		AAnimal(const AAnimal& src);
 		virtual ~AAnimal(void);
 
@@ -34,7 +34,7 @@ class AAnimal
 		virtual void makeSound(void) const = 0;
 
 		// Accessors
-		const std::string	getType(void) const;
+		// const std::string	getType(void) const;
 };
 
 #endif

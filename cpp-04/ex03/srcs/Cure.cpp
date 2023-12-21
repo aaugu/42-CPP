@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 17:36:30 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/20 17:39:34 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/21 11:14:40 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /*                          CONSTRUCTORS & DESTRUCTOR                         */
 /* ************************************************************************** */
 
-Cure::Cure(void) {
+Cure::Cure(void) : type_("ice") {
 	std::cout << "[Cure] Default constructor called." << std::endl;
 }
 
@@ -35,3 +35,26 @@ Cure::~Cure(void) {
 /* ************************************************************************** */
 
 // ---------------------------- Copy assignment ----------------------------- //
+Cure&	Cure::operator=(const Cure& src)
+{
+	std::cout << "[Cure] Copy assignment overload operator called." << std::endl;
+	if (this != &src)
+	{
+		
+	}
+	return (*this);
+}
+
+/* ************************************************************************** */
+/*                              PUBLIC FUNCTIONS                              */
+/* ************************************************************************** */
+
+void	Cure::use(ICharacter& target) {
+	std::cout << "* heals" << target.getName() << "'s wounds *" << std::endl;
+}
+
+AMateria*	Cure::clone() const {
+	AMateria*	cureClone = new Cure();
+
+	return (cureClone);
+}

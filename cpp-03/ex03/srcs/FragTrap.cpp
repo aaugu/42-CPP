@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:24:57 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/13 15:40:09 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/15 13:17:31 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,12 @@ FragTrap&	FragTrap::operator=(const FragTrap& rhs)
 
 void	FragTrap::highFivesGuys(void)
 {
+	if (this->_hitPoints == 0)
+	{
+		std::cout	<< "FragTrap " << this->_name << " is kind of doing high five with the ground"
+					<< " because he is dead." << std::endl;
+		return ;
+	}
 	this->healthBuff = true;
 	std::cout	<< "FragTrap " << this->_name
 				<< " raise hands for high five 'I love you guys'. "

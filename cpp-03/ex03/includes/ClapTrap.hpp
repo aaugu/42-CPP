@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 14:53:12 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/12 11:28:22 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/14 11:46:38 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 class ClapTrap
 {
 	protected:
+		ClapTrap(void);
+
 		std::string		_name;
 		unsigned int	_hitPoints;
 		unsigned int	_energyPoints;
@@ -31,7 +33,6 @@ class ClapTrap
 
 	public:
 		// Constructors
-		ClapTrap(void);
 		ClapTrap(const std::string name);
 		ClapTrap(ClapTrap& clapTrap);
 

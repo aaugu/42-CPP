@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:11:51 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/20 16:55:17 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/21 10:39:30 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ AAnimal::AAnimal(void) : _type("Chocobo") {
 	std::cout << "[Animal] Default constructor called." << std::endl;
 }
 
-AAnimal::AAnimal(std::string type) : _type(type) {
-	std::cout << "[Animal] Argument constructor called." << std::endl;
-}
+// AAnimal::AAnimal(std::string type) : _type(type) {
+// 	std::cout << "[Animal] Argument constructor called." << std::endl;
+// }
 
 AAnimal::AAnimal(const AAnimal& src) {
 	std::cout << "[Animal] Copy constructor called." << std::endl;
@@ -43,7 +43,7 @@ AAnimal&	AAnimal::operator=(const AAnimal& src)
 {
 	std::cout << "[Animal] Copy assignment overload operator called." << std::endl;
 	if (this != &src)
-		this->_type = src.getType();
+		this->_type = src._type;
 	return (*this);
 }
 
@@ -51,14 +51,14 @@ AAnimal&	AAnimal::operator=(const AAnimal& src)
 /*                              PUBLIC FUNCTIONS                              */
 /* ************************************************************************** */
 
-void	AAnimal::makeSound(void) const {
-	std::cout << "Kweh" << std::endl;
-}
+// void	AAnimal::makeSound(void) const {
+// 	std::cout << "Kweh" << std::endl;
+// }
 
 /* ************************************************************************** */
 /*                                  ACCESSORS                                 */
 /* ************************************************************************** */
 
-const std::string	AAnimal::getType() const {
-	return (this->_type);
-}
+// const std::string	AAnimal::getType() const {
+// 	return (this->_type);
+// }

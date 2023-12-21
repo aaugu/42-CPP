@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 17:36:21 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/20 17:37:25 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/21 10:26:05 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,3 +35,12 @@ MateriaSource::~MateriaSource(void) {
 /* ************************************************************************** */
 
 // ---------------------------- Copy assignment ----------------------------- //
+MateriaSource&	MateriaSource::operator=(const MateriaSource& src)
+{
+	std::cout << "[MateriaSource] Copy assignment overload operator called." << std::endl;
+	if (this != &src)
+	{
+		
+	}
+	return (*this);
+}

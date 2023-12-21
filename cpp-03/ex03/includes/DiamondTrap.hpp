@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:54:33 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/13 16:04:35 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/14 11:55:54 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../includes/ScavTrap.hpp"
 # include "../includes/FragTrap.hpp"
 
-class DiamondTrap : public ScavTrap
+class DiamondTrap : public FragTrap, public ScavTrap
 {
 	private:
 		std::string	_name;
@@ -31,9 +31,11 @@ class DiamondTrap : public ScavTrap
 		// Destructor
 		~DiamondTrap(void);
 
-		// Overloaded operators
-		// == Copy assignment ==
+		// Copy assignment operator
 		DiamondTrap&	operator=(const DiamondTrap& rhs);
+
+		using	ScavTrap::attack;
+		void	whoAmI(void);
 };
 
 #endif

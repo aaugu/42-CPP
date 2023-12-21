@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:24:14 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/13 15:37:58 by aaugu            ###   ########.fr       */
+/*   Updated: 2023/12/14 11:58:04 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <string>
 # include "../includes/ClapTrap.hpp"
 
-class FragTrap : public ClapTrap
+class FragTrap : virtual public ClapTrap
 {
 	private:
 		bool	healthBuff;
