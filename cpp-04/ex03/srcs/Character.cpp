@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 17:34:26 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/21 17:02:30 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/09 15:27:59 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ Character::Character(const std::string name) : name_(name) {
 
 Character::Character(const Character& src) {
 	std::cout << YELLOW "[Character] Copy constructor called." END << std::endl;
+	this->initializeMaterias_();
 	*this = src;
 }
 
@@ -49,8 +50,8 @@ Character&	Character::operator=(const Character& src)
 	std::cout << "[Character] Copy assignment overload operator called." << std::endl;
 	if (this != &src)
 	{
-		this->deleteMaterias_();
 		this->name_ = src.getName();
+		this->deleteMaterias_();
 		for (int i = 0; i < 4; i++)
 		{
 			if (src.materias_[i] != NULL)
@@ -70,12 +71,13 @@ void Character::equip(AMateria* m) {
 		std::cout << RED "Error: There is no materia to equip." END << std::endl;
 		return ;
 	}
+
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->materias_[i] == NULL)
 		{
 			this->materias_[i] = m;
-			std::cout	<< YELLOW "[Character] successfully equips " 
+			std::cout	<< YELLOW "[Character] successfully equips "
 						<< this->materias_[i]->getType() << " materia." END << std::endl;
 			return ;
 		}
@@ -88,8 +90,8 @@ void Character::unequip(int idx) {
 		std::cout << RED "Error: Invalid index in [Character] materias." END << std::endl;
 	else if (this->materias_[idx])
 	{
-		std::cout	<< YELLOW "[Character] successfully unequips " 
-					<< this->materias_[idx]->getType() << " materia " 
+		std::cout	<< YELLOW "[Character] successfully unequips "
+					<< this->materias_[idx]->getType() << " materia "
 					<< "and it is left on the floor" END << std::endl;
 		this->materias_[idx] = NULL;
 	}

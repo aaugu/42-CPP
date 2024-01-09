@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 17:05:58 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/21 16:57:36 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/09 15:59:07 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,15 @@
 void	testCharacterMaterias(void);
 void	testMateriaSource(void);
 void	testCharacterCopyAndUse(void);
+void	testSubject(void);
 
 // Main
 int	main(void)
 {
 	// testMateriaSource();
-	testCharacterMaterias();
+	// testCharacterMaterias();
 	testCharacterCopyAndUse();
+	// testSubject();
 	return (0);
 }
 
@@ -57,7 +59,7 @@ void	testMateriaSource(void)
 	AMateria* tmp1 = src->createMateria("ice");
 	AMateria* tmp2 = src->createMateria("cure");
 	AMateria* tmp3 = src->createMateria("fire");
-	
+
 	if (!tmp3)
 		std::cout << std::endl << "Finished!" << std::endl << std::endl;
 
@@ -74,7 +76,7 @@ void	testCharacterMaterias(void)
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
 	std::cout << std::endl;
-	
+
 	std::cout << "Creating materias :" << std::endl;
 	AMateria* tmp1 = src->createMateria("ice");
 	AMateria* tmp2 = src->createMateria("cure");
@@ -110,31 +112,59 @@ void	testCharacterCopyAndUse(void)
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
 	std::cout << std::endl;
-	
+
 	std::cout << "Creating materias :" << std::endl;
 	AMateria* tmp1 = src->createMateria("ice");
 	AMateria* tmp2 = src->createMateria("cure");
 	std::cout << std::endl;
 
 	std::cout << "Creating Character and equip materias :" << std::endl;
-	ICharacter* me = new Character("me");
+	Character* me = new Character("me");
 	me->equip(tmp1);
 	me->equip(tmp2);
 	std::cout << std::endl;
 
 	std::cout << "Copy Character" << std::endl;
-	ICharacter* bob = me;
-	std::cout << bob->getName() << std::endl << std::endl;
+	Character jon(*me);
+	std::cout << jon.getName() << std::endl;
+	Character bob = jon;
+	std::cout << bob.getName() << std::endl << std::endl;
 
 	std::cout << "Use of materias and check that copy is not shallow" << std::endl;
+	me->use(-1, bob);
+	me->use(10, bob);
+	me->use(0, bob);
+	me->use(1, bob);
+	bob.use(0, *me);
+	bob.use(1, *me);
+
+	std::cout << "Delete base character and their materias :" << std::endl;
+	delete me;
+
+	std::cout << std::endl << "Delete materia source :" << std::endl;
+	delete src;
+}
+
+void	testSubject(void)
+{
+	IMateriaSource* src = new MateriaSource();
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+
+	ICharacter* me = new Character("me");
+
+	AMateria* tmp;
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
+
+	ICharacter* bob = new Character("bob");
+
 	me->use(0, *bob);
 	me->use(1, *bob);
-	bob->use(0, *me);
-	bob->use(1, *me);
 
-	std::cout << "Delete characters and theirs materias :" << std::endl;
-	delete me;
 	delete bob;
-	std::cout << "Delete materia source :" << std::endl;
+	delete me;
 	delete src;
 }

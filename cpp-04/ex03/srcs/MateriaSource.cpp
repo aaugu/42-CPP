@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 17:36:21 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/21 15:26:08 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/09 15:04:57 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@
 /* ************************************************************************** */
 
 MateriaSource::MateriaSource(void) {
-	this->initializeMaterias_();
 	std::cout << PURPLE "[MateriaSource] Default constructor called." END << std::endl;
+	this->initializeMaterias_();
 }
 
 MateriaSource::MateriaSource(const MateriaSource& src) {
+	std::cout << PURPLE "[MateriaSource] Copy constructor called." END << std::endl;
 	this->initializeMaterias_();
 	*this = src;
-	std::cout << PURPLE "[MateriaSource] Copy constructor called." END << std::endl;
 }
 
 MateriaSource::~MateriaSource(void) {
@@ -46,6 +46,7 @@ MateriaSource&	MateriaSource::operator=(const MateriaSource& src)
 	std::cout << PURPLE "[MateriaSource] Copy assignment overload operator called." END << std::endl;
 	if (this != &src)
 	{
+		this->deleteMaterias_();
 		for (int i = 0; i < 4; i++)
 		{
 			if (src.materias_[i] != NULL)
@@ -72,7 +73,7 @@ void	MateriaSource::learnMateria(AMateria* materia)
 		if (this->materias_[i] == NULL)
 		{
 			this->materias_[i] = materia;
-			std::cout 	<< PURPLE "[MateriaSource] learned " << materia->getType() 
+			std::cout 	<< PURPLE "[MateriaSource] learned " << materia->getType()
 						<< " materia." END << std::endl;
 			return ;
 		}
@@ -93,7 +94,7 @@ AMateria*	MateriaSource::createMateria(std::string const & type)
 		}
 	}
 	std::cout	<< RED "Error: " << type
-				<< " is an unknown type of materia for [MateriaSource]." END 
+				<< " is an unknown type of materia for [MateriaSource]." END
 				<< std::endl;
 	return (0);
 }
@@ -110,10 +111,12 @@ void	MateriaSource::initializeMaterias_(void)
 
 void	MateriaSource::deleteMaterias_(void)
 {
-	
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->materias_[i] != NULL)
+		{
 			delete this->materias_[i];
+			this->materias_[i] = NULL;
+		}
 	}
 }
