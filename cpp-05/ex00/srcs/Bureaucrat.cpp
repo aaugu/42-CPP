@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:15:46 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/10 16:18:10 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/11 12:10:43 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,26 @@ Bureaucrat::~Bureaucrat(void) {}
 /*                              MEMBER FUNCTIONS                              */
 /* ************************************************************************** */
 
-void	Bureaucrat::incrementGrade(void) {
-	if (this->grade_ == Bureaucrat::highestGrade)
+void	Bureaucrat::incrementGrade(int i) {
+	if (i < 0)
+	{
+		std::cerr << RED "Error : invalid value. Should be positive." END << std::endl;
+		return ;
+	}
+	if (this->grade_ - i < Bureaucrat::highestGrade)
 		throw Bureaucrat::GradeTooHighException();
-	this->grade_--;
+	this->grade_ -= i;
 }
 
-void	Bureaucrat::decrementGrade(void) {
-	if (this->grade_ == Bureaucrat::lowestGrade)
+void	Bureaucrat::decrementGrade(int i) {
+	if (i < 0)
+	{
+		std::cerr << RED "Error : invalid value. Should be positive." END << std::endl;
+		return ;
+	}
+	if (this->grade_ + i > Bureaucrat::lowestGrade)
 		throw Bureaucrat::GradeTooLowException();
-	this->grade_++;
+	this->grade_ += i;
 }
 
 /* ************************************************************************** */
@@ -73,7 +83,7 @@ Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& src) {
 }
 
 std::ostream&	operator<<(std::ostream& oS, const Bureaucrat& src) {
-	oS << src.getName() << ", bureaucrat grade "<< src.getGrade() << std::endl;
+	oS << src.getName() << ", bureaucrat grade "<< src.getGrade() << ".";
 	return (oS);
 }
 

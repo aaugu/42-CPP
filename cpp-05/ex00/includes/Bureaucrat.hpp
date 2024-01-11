@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:16:04 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/10 15:54:07 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/11 12:10:30 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define BUREAUCRAT_HPP
 
 # include <string>
+
+# define CYAN "\e[96m"
+# define RED  "\e[31m"
+# define END  "\e[0m"
 
 class Bureaucrat
 {
@@ -32,8 +36,8 @@ class Bureaucrat
 		Bureaucrat&	operator=(const Bureaucrat& src);
 
 		// Public Member functions
-		void	incrementGrade(void);
-		void	decrementGrade(void);
+		void	incrementGrade(int i);
+		void	decrementGrade(int i);
 
 		// Exceptions
 		class GradeTooHighException : public std::exception {
