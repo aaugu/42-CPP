@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:16:04 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/11 15:07:39 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/12 15:22:03 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 # define BUREAUCRAT_HPP
 
 # include <string>
+# include "Form.hpp"
 
 # define CYAN "\e[96m"
+# define BLUE	"\e[34m"
 # define RED  "\e[31m"
 # define END  "\e[0m"
+
+class Form;
 
 class Bureaucrat
 {
@@ -41,6 +45,7 @@ class Bureaucrat
 		// Public Member functions
 		void	incrementGrade(int i);
 		void	decrementGrade(int i);
+		void	signForm(Form& form);
 
 		// Accessors
 		const std::string	getName(void) const;
