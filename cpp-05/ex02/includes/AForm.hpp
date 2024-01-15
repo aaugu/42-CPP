@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 14:21:22 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/12 16:28:51 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/15 15:22:00 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ class AForm
 
 		// Public Member functions
 		void	beSigned(const Bureaucrat bureaucrat);
+		void	execute(const Bureaucrat& executor) const;
 
 		// Accessors
 		const std::string	getName(void) const;

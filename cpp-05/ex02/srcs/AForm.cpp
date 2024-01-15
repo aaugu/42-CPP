@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 14:21:55 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/12 16:11:58 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/15 16:16:24 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ AForm::AForm(const std::string name, const int signGrade, const int execGrade)
 }
 
 AForm::AForm(const AForm& src) :	name_(src.getName()),
-								isSigned_(src.isSigned()),
-								requiredSignGrade_(src.getRequiredSignGrade()),
-								requiredExecGrade_(src.getRequiredExecGrade()) {}
+									isSigned_(src.isSigned()),
+									requiredSignGrade_(src.getRequiredSignGrade()),
+									requiredExecGrade_(src.getRequiredExecGrade()) {}
 
 AForm::~AForm(void) {}
 
@@ -45,15 +45,26 @@ AForm::~AForm(void) {}
 /* ************************************************************************** */
 
 void	AForm::beSigned(const Bureaucrat bureaucrat) {
-	if (bureaucrat.getGrade() > this->requiredSignGrade_)
-		throw (AForm::GradeTooLowException());
 	if (this->isSigned_ == false)
 	{
+		if (bureaucrat.getGrade() > this->requiredSignGrade_)
+			throw (AForm::GradeTooLowException());
 		this->isSigned_ = true;
-		std::cout << *this << " Signed " << *this << std::endl;
+		std::cout << bureaucrat << " signed " << *this << std::endl;
 	}
 	else
 		std::cout << this->name_ << " was already signed." << std::endl;
+}
+
+void	AForm::execute(const Bureaucrat& bureaucrat) const {
+	if (this->isSigned_ == true)
+	{
+		if (bureaucrat.getGrade() > this->requiredSignGrade_)
+			throw (AForm::GradeTooLowException());
+		std::cout << bureaucrat << " executed " << *this << std::endl;
+	}
+	else
+		std::cout << this->name_ << " should be signed before executed." << std::endl;
 }
 
 /* ************************************************************************** */
