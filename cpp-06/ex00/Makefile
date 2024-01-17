@@ -10,7 +10,7 @@ INCLUDE	=	-I includes
 RM		=	rm -rf
 
 SRC_D 	=	srcs/
-SRC		=	main ScalarConverter
+SRC		=	main StateMachine
 SRCS	=	$(addprefix  $(SRC_D), $(addsuffix .cpp, $(SRC)))
 
 OBJ_D 	=	objs/
