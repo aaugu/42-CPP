@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:47:43 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/17 16:46:14 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/17 17:36:14 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,14 @@
 #include <iostream>
 
 /* ************************************************************************** */
-/*                          CONSTRUCTORS & DESTRUCTOR                         */
+/*                          ORTHODOX CANONICAL FORM                           */
 /* ************************************************************************** */
 
 StateMachine::StateMachine(void) {}
 
-StateMachine::StateMachine(const StateMachine& src) {
-	*this = src;
-}
+StateMachine::StateMachine(const StateMachine& src) { *this = src; }
 
 StateMachine::~StateMachine(void) {}
-
-/* ************************************************************************** */
-/*                            OVERLOADING OPERATORS                           */
-/* ************************************************************************** */
 
 StateMachine&	StateMachine::operator=(const StateMachine& src) {
 	(void) src;
@@ -47,7 +41,7 @@ int	StateMachine::getLiteralTypeFromStateMachine(const std::string& literal) {
 		if (state == ERROR)
 			break ;
 		execStateMachine(literal[i], state, type);
-		std::cout << "char : " << literal[i] << " / type: " << type << " / state: " << state << std::endl;
+		// std::cout << "char : " << literal[i] << " / type: " << type << " / state: " << state << std::endl;
 	}
 	return (type);
 }
@@ -55,15 +49,15 @@ int	StateMachine::getLiteralTypeFromStateMachine(const std::string& literal) {
 /* ************************************************************************** */
 /*                          PRIVATE MEMBER FUNCTION                           */
 /* ************************************************************************** */
-
+// ------------------------ State Machine execution ----------------------------
 void	StateMachine::execStateMachine(const char c, int& state, int& type) {
 	switch (state)
 	{
 		case IDLE:
 			stateIdle(c, state);
 			break;
-		case NEGATIVE:
-			stateNegative(c, state, type);
+		case SIGN:
+			stateSign(c, state, type);
 			break;
 		case sCHAR:
 			stateChar(c, state, type);
@@ -80,11 +74,12 @@ void	StateMachine::execStateMachine(const char c, int& state, int& type) {
 	}
 }
 
+// ---------------------------------- States ----------------------------------
 void	StateMachine::stateIdle(const char c, int& state) {
 	if (c == '\0')
 		state = ERROR;
-	else if (c == '-')
-		state = NEGATIVE;
+	else if (c == '-' || c == '+')
+		state = SIGN;
 	else if (std::isdigit(c))
 		state = sNUM;
 	else
@@ -98,7 +93,7 @@ void	StateMachine::stateChar(const char c, int& state, int& type) {
 		state = ERROR;
 }
 
-void	StateMachine::stateNegative(const char c, int& state, int& type) {
+void	StateMachine::stateSign(const char c, int& state, int& type) {
 	if (c == '\0')
 		type = CHAR;
 	else if (std::isdigit(c))

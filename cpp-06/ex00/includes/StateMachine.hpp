@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:45:40 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/17 16:48:31 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/17 17:36:45 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,24 @@
 
 #include <string>
 
-enum states { IDLE, sCHAR, sNUM, sFLOAT, sDOUBLE, NEGATIVE, ERROR };
+enum states { IDLE, sCHAR, sNUM, sFLOAT, sDOUBLE, SIGN, ERROR };
 enum literalTypes { UNKNOWN, CHAR, INT, FLOAT, DOUBLE };
 
 class StateMachine
 {
 	private:
-		// Constructors
+		// Orthodox Canonical Form
 		StateMachine(void);
 		StateMachine(const StateMachine& src);
-		// Destructor
 		~StateMachine(void);
-
-		// Overload operator
 		StateMachine&	operator=(const StateMachine& src);
 
+		// State machine execution
 		static void	execStateMachine(const char c, int& state, int& type);
 
 		// States
 		static void	stateIdle(const char c, int& state);
-		static void	stateNegative(const char c, int& state, int& type);
+		static void	stateSign(const char c, int& state, int& type);
 		static void	stateChar(const char c, int& state, int& type);
 		static void	stateNum(const char c, int& state, int& type);
 		static void	stateDouble(const char c, int& state, int& type);
