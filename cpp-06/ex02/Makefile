@@ -3,20 +3,21 @@ GREEN	=	\033[0;32m
 CYAN	=	\033[0;36m
 CYAN_B	=	\033[1;96m
 
-NAME	=	convert
+NAME	=	identify
 CC		=	c++
 FLAGS	=	-Wall -Wextra -Werror -std=c++98
 INCLUDE	=	-I includes
 RM		=	rm -rf
 
+SRC_D 	=	srcs/
 SRC		=	main
-SRCS	=	$(addsuffix .cpp, $(SRC))
+SRCS	=	$(addprefix  $(SRC_D), $(addsuffix .cpp, $(SRC)))
 
 OBJ_D 	=	objs/
 OBJ		=	$(SRC:%.c=%.o)
 OBJS	=	$(addprefix $(OBJ_D), $(addsuffix .o, $(OBJ)))
 
-$(OBJ_D)%.o : %.cpp
+$(OBJ_D)%.o : $(SRC_D)%.cpp
 			@mkdir -p $(OBJ_D)
 			@($(CC) $(FLAGS) $(INCLUDE) -c $< -o $@)
 
