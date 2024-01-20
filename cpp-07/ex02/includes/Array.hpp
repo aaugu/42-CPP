@@ -6,28 +6,77 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:47:52 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/18 17:53:02 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/20 15:03:58 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ARRAY_HPP
 # define ARRAY_HPP
-/*
-Develop a class template Array that contains elements of type T and that implements
-the following behavior and functions:
-• Construction with no parameter: Creates an empty array.
-• Construction with an unsigned int n as a parameter: Creates an array of n elements
-initialized by default.
-Tip: Try to compile int * a = new int(); then display *a.
-• Construction by copy and assignment operator. In both cases, modifying either the
-original array or its copy after copying musn’t affect the other array.
-• You MUST use the operator new[] to allocate memory. Preventive allocation (allocating memory in advance) is forbidden. Your program must never access nonallocated memory.
-• Elements can be accessed through the subscript operator: [ ].
-• When accessing an element with the [ ] operator, if its index is out of bounds, an
-std::exception is thrown.
-• A member function size() that returns the number of elements in the array. This
-member function takes no parameter and musn’t modify the current instance.
-As usual, ensure everything works as expected and turn in a main.cpp file that contains your tests.
-*/
+
+# include <iostream>
+
+template <typename T>
+class Array
+{
+	private:
+		unsigned int	size_;
+		T*				array_;
+
+	public:
+		// Constructors and Destructor
+		Array(void) : size_(0), array_(NULL) {};
+		Array(unsigned int size) : size_(size), array_(new T[size]) {};
+		Array(const Array& src) : size_(src.size_),array_(new T[src.size_]) {
+			for (unsigned int i = 0; i < this->size_; i++)
+					this->array_[i] = src.array_[i];
+		};
+		~Array(void) { delete [] this->array_; };
+
+		// Overload operators
+		Array&	operator=(const Array& src) {
+			if (this != &src)
+			{
+				if (this->size_ != src.size())
+				{
+					delete [] array_;
+					this->size_ = src.size();
+					this->array_ = new T[this->size_];
+				}
+				std::cout << "ici\n";
+				for (unsigned int i = 0; i < this->size_; i++)
+					this->array_[i] = src.array_[i];
+			}
+			return (*this);
+		};
+
+		T&		operator[](unsigned int i) const {
+			if (i >= this->size_)
+				throw Array::OutOfRangeIndex();
+			return (this->array_[i]);
+		}
+
+		// Member functions
+		unsigned int	size(void) const {
+			return (this->size_);
+		};
+
+		class OutOfRangeIndex : public std::exception {
+			public:
+				virtual const char *	what(void) const throw () {
+					return ("Index is out of range");
+				};
+		};
+};
+
+template < typename T >
+std::ostream&	operator<<(std::ostream& oS, const Array< T >& array) {
+	if (array.size() != 0)
+	{
+		for (unsigned int i = 0; i < array.size(); i++)
+			oS << array[i] << " ";
+		oS << std::endl;
+	}
+	return (oS);
+}
 
 #endif
