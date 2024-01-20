@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:01:01 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/15 16:02:11 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/20 16:38:16 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,13 @@ class ShrubberyCreationForm : public AForm
 		// Overload operator
 		ShrubberyCreationForm&	operator=(const ShrubberyCreationForm& src);
 
+		// Member functions
+		void	beExecuted(void) const;
+
 		// Accessors
 		const std::string	getTarget(void) const;
+
+		static const std::string	teaTree;
 };
 
 #endif

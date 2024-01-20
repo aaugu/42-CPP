@@ -6,10 +6,11 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:02:48 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/15 16:02:32 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/20 15:30:32 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
 #include "../includes/PresidentialPardonForm.hpp"
 
 /* ************************************************************************** */
@@ -42,6 +43,15 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(PresidentialPardonForm
 	if (this != &src)
 		this->target_ = src.getTarget();
 	return (*this);
+}
+
+/* ************************************************************************** */
+/*                              MEMBER FUNCTIONS                              */
+/* ************************************************************************** */
+
+void	PresidentialPardonForm::beExecuted(void) const {
+	std::cout	<< this->target_ << " has been pardoned by Zaphod Beeblebrox."
+				<< std::endl;
 }
 
 /* ************************************************************************** */

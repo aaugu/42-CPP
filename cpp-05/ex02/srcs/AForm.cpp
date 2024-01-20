@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 14:21:55 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/15 16:16:24 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/20 15:26:56 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	AForm::execute(const Bureaucrat& bureaucrat) const {
 	{
 		if (bureaucrat.getGrade() > this->requiredSignGrade_)
 			throw (AForm::GradeTooLowException());
-		std::cout << bureaucrat << " executed " << *this << std::endl;
+		this->beExecuted();
 	}
 	else
 		std::cout << this->name_ << " should be signed before executed." << std::endl;

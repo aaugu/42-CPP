@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:01:45 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/15 16:01:57 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/20 15:27:47 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ class RobotomyRequestForm : public AForm
 
 		// Overload operator
 		RobotomyRequestForm&	operator=(const RobotomyRequestForm& src);
+
+		// Member functions
+		void	beExecuted(void) const;
 
 		// Accessors
 		const std::string	getTarget(void) const;

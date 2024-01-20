@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:01:11 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/15 16:05:06 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/20 15:27:39 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ class PresidentialPardonForm : public AForm
 
 		// Overload operator
 		PresidentialPardonForm&	operator=(const PresidentialPardonForm& src);
+
+		// Member functions
+		void	beExecuted(void) const;
 
 		// Accessors
 		const std::string	getTarget(void) const;

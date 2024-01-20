@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 14:21:22 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/15 15:22:00 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/20 15:27:17 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ class AForm
 		bool				isSigned_;
 		const	int			requiredSignGrade_;
 		const	int			requiredExecGrade_;
+
+	protected:
+		virtual void	beExecuted(void) const = 0;
 
 	public:
 		// Constructors & Destructor
