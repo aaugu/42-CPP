@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:47:43 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/17 17:36:14 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/20 16:43:17 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ StateMachine&	StateMachine::operator=(const StateMachine& src) {
 /*                           PUBLIC MEMBER FUNCTION                           */
 /* ************************************************************************** */
 
-int	StateMachine::getLiteralTypeFromStateMachine(const std::string& literal) {
+int	StateMachine::findLiteralType(const std::string& literal) {
 	int	state = IDLE;
 	int type = UNKNOWN;
 

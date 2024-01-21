@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:45:40 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/17 17:36:45 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/21 12:20:13 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <string>
 
 enum states { IDLE, sCHAR, sNUM, sFLOAT, sDOUBLE, SIGN, ERROR };
-enum literalTypes { UNKNOWN, CHAR, INT, FLOAT, DOUBLE };
+enum literalTypes { UNKNOWN, CHAR, INT, FLOAT, DOUBLE, LITERAL };
 
 class StateMachine
 {
@@ -40,7 +40,7 @@ class StateMachine
 
 	public:
 		// Member functions
-		static int	getLiteralTypeFromStateMachine(const std::string& literal);
+		static int	findLiteralType(const std::string& literal);
 };
 
 #endif
