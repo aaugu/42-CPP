@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:24:04 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/15 18:48:34 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/22 12:09:41 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ int main(void)
 	AForm*	ppf = intern.makeForm("presidential pardon", "Manager");
 	AForm*	uf = intern.makeForm("unknown", "unknown");
 	AForm*	ef = intern.makeForm("", "");
+
+	(void) uf;
+	(void) ef;
 
 	delete (rrf);
 	delete (scf);

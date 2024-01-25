@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:03:04 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/20 15:34:07 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/22 11:57:37 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(RobotomyRequestForm const & 
 /* ************************************************************************** */
 
 void	RobotomyRequestForm::beExecuted(void) const {
-	std::cout << "*rizzz... bzzzzzz...*" << std::endl;
+	std::cout << "*rizzz... bzzzzzz...* ";
 	if (std::rand() % 2)
 		std::cout << this->target_ << " has been robotomized successfully!" << std::endl;
 	else

@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:24:04 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/20 16:29:28 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/22 11:55:19 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main(void)
 
 	PresidentialPardonForm	presidentialPardonForm("Manager");
 	RobotomyRequestForm		robotomyRequestForm	("Dexter");
-	ShrubberyCreationForm	shrubberyCreationForm("Tea tree");
+	ShrubberyCreationForm	shrubberyCreationForm("Tea");
 	std::cout	<< presidentialPardonForm << std::endl
 				<< robotomyRequestForm << std::endl
 				<< shrubberyCreationForm << std::endl;

@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whatever.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 16:43:00 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/23 13:53:45 by aaugu            ###   ########.fr       */
+/*   Created: 2024/01/25 10:43:57 by aaugu             #+#    #+#             */
+/*   Updated: 2024/01/25 14:07:30 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WHATEVER_HPP
-# define WHATEVER_HPP
 
-template <typename T>
-void	swap(T& a, T& b) {
-    T	tmp;
+#include "../includes/easyfind.hpp"
+#include <vector>
+#include <iostream>
+#include <algorithm>
 
-	tmp = a;
-	a = b;
-	b = tmp;
-	return ;
+int	main(void)
+{
+	std::vector<int> numbers = {1, 100, 10, 70, 100};
+
+	try {
+		easyfind(numbers, 3);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+		return (1);
+	}
+	return (0);
 }
-
-template <typename T>
-T	min(T& a, T& b) {
-    return ((a < b) ? a : b);
-}
-
-template <typename T>
-T	max(T& a, T& b) {
-    return ((a > b) ? a : b);
-}
-
-#endif

@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 16:20:52 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/15 18:39:15 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/22 14:32:34 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ AForm*	Intern::makeForm(std::string formName, std::string target)
 			return (form);
 		}
 	}
-	std::cout << "Unknown form type." << std::endl;
+	std::cout << "Error: Unknown form type." << std::endl;
 	return (NULL);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:22:26 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/18 16:30:07 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/23 13:45:39 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,5 @@ void	identify(Base& p) {
 		return ;
 	}
 	catch (std::exception& e) { }
+	std::cout << "UNKNOWN";
 }

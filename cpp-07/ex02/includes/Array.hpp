@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:47:52 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/20 15:03:58 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/25 13:23:39 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ class Array
 					this->size_ = src.size();
 					this->array_ = new T[this->size_];
 				}
-				std::cout << "ici\n";
 				for (unsigned int i = 0; i < this->size_; i++)
 					this->array_[i] = src.array_[i];
 			}

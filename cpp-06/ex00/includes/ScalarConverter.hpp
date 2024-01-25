@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 11:28:46 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/21 16:25:03 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/25 09:55:30 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,12 @@ class ScalarConverter
 		static bool		_charNotPrintable;
 		static bool		_charOverflow;
 		static bool		_intOverflow;
-		static bool		_floatOverflow;
-		static bool		_doubleOverflow;
 		static bool		_impossibleFloatDouble;
 
 		static const char		_charMin;
 		static const char		_charMax;
 		static const int		_intMin;
 		static const int		_intMax;
-		static const float		_floatMin;
-		static const float		_floatMax;
-		static const double		_doubleMin;
-		static const double		_doubleMax;
 
 		static int	_findType(const std::string literal);
 

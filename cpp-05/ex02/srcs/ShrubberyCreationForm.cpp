@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:03:27 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/20 16:36:32 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/22 11:59:22 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,12 @@ void	ShrubberyCreationForm::beExecuted(void) const {
 	std::string		base = this->target_;
 	std::string		outFile = base.append("_shrubbery");
 
-	std::cout << outFile << std::endl;
-
 	oFS.open(outFile.c_str(), std::ofstream::out | std::ofstream::app);
 	if (oFS.good())
 	{
 		oFS << ShrubberyCreationForm::teaTree;
-		std::cout	<< "A tea shrubbery has been planted at "
-					<< this->target_ << "_shrubbery." << std::endl;
+		std::cout	<< "A " << this->target_ << " shrubbery has been planted at "
+					<< outFile << std::endl;
 		oFS.close();
 	}
 	else {

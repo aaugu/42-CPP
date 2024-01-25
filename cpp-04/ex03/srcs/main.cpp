@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 17:05:58 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/09 15:59:07 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/22 10:23:18 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	testSubject(void);
 // Main
 int	main(void)
 {
-	// testMateriaSource();
-	// testCharacterMaterias();
+	testMateriaSource();
+	testCharacterMaterias();
 	testCharacterCopyAndUse();
-	// testSubject();
+	testSubject();
 	return (0);
 }
 
@@ -41,7 +41,7 @@ void	testMateriaSource(void)
 	AMateria* tmp = src->createMateria("ice");
 
 	if (!tmp)
-		std::cout << std::endl << "Let's try to learn materia:" << std::endl << std::endl;
+		std::cout << std::endl << "Learning materias:" << std::endl << std::endl;
 
 	src->learnMateria(new Ice());
 	std::cout << std::endl;

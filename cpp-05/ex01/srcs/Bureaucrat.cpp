@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:15:46 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/12 15:46:32 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/22 11:53:50 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	Bureaucrat::signForm(Form& form)
 		form.beSigned(*this);
 	}
 	catch (std::exception const & e) {
-		std::cout 	<< RED << *this << " Could not sign "
+		std::cout 	<< RED << *this << " could not sign "
 					<< form << " because: " << e.what() << END
 					<< std::endl;
 	}
@@ -95,7 +95,7 @@ Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& src) {
 }
 
 std::ostream&	operator<<(std::ostream& oS, const Bureaucrat& src) {
-	oS << src.getName() << ", bureaucrat grade "<< src.getGrade() << ".";
+	oS << src.getName() << ", bureaucrat grade "<< src.getGrade();
 	return (oS);
 }
 

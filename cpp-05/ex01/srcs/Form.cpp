@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 14:21:55 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/12 15:47:40 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/22 11:53:03 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	Form::beSigned(const Bureaucrat bureaucrat) {
 	if (this->isSigned_ == false)
 	{
 		this->isSigned_ = true;
-		std::cout << *this << " Signed " << *this << std::endl;
+		std::cout << bureaucrat << " signed " << *this << std::endl;
 	}
 	else
 		std::cout << this->name_ << " was already signed." << std::endl;

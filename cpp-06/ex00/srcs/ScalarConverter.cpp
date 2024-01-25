@@ -156,6 +156,8 @@ void	ScalarConverter::_castFromFloat(void) {
 	_double = static_cast<double>( _float );
 	if (!std::isprint(_char))
 		_charNotPrintable = true;
+	if (_float < _intMin || _float > _intMax)
+		_intOverflow = true;
 }
 
 void	ScalarConverter::_castFromDouble(void) {
@@ -164,6 +166,8 @@ void	ScalarConverter::_castFromDouble(void) {
 	_float = static_cast<float>( _double );
 	if (!std::isprint(_char))
 		_charNotPrintable = true;
+	if (_double < _intMin || _double > _intMax)
+		_intOverflow = true;
 }
 
 void	ScalarConverter::_castFromLiteral(const std::string literal) {

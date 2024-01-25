@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 17:36:00 by aaugu             #+#    #+#             */
-/*   Updated: 2023/12/21 13:22:41 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/22 11:21:30 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ class MateriaSource : public IMateriaSource
 
 		void		learnMateria(AMateria* materia);
 		AMateria*	createMateria(std::string const & type);
-
-
 };
 
 
