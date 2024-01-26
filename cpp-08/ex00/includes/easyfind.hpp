@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:42:52 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/25 14:08:53 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/26 14:02:36 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,70 @@
 
 # include <algorithm>
 # include <iostream>
+# include <cstdlib>
+
+# define BLUE	"\e[34m"
+# define CYAN	"\e[96m"
+# define YELLOW	"\e[33m"
+# define GREEN	"\e[92m"
+# define END	"\e[0m"
 
 template <typename T>
-void	easyfind(T container, int n)
+void	easyfind(T container, int toFind)
 {
-	T<int>::iterator it;
+	typename T::const_iterator	it;
 
-	it = find(container.begin(), container.end(), n);
+	std::cout << YELLOW << "Finding " << toFind << "... " << END;
+	it = std::find(container.begin(), container.end(), toFind);
 	if ( it != container.end())
-		std::cout << n << " found at position " << *it << std::endl;
+		std::cout << GREEN << *it << " found in container." << END << std::endl;
 	else
-		throw NoOccurrenceFound();
+		throw std::out_of_range("No occurence of this value.");
 }
 
 template <typename T>
+void	testValue(T container, int toFind)
+{
+	try {
+		easyfind(container, toFind);
+	}
+	catch(const std::exception& e) {
+		std::cerr << e.what() << '\n';
+	}
+}
 
-class NoOccurrenceFound : public std::exception {
-	public:
-		virtual const char *	what(void) const throw () {
-			return ("No occurence of current value");
-		};
-};
+template <typename T>
+void	testContainerType(T& container)
+{
+	int	n;
+
+	for (int i = 0; i < 10; i++)
+	{
+		n = rand() % 42;
+		container.push_back(n);
+		std::cout << CYAN << n << " ";
+	}
+	std::cout << END << std::endl;
+	
+	for (int i = 0; i < 5; i++)
+		testValue(container, rand() % 42);
+}
+
+void	testArray(void)
+{
+	std::array<int, 10>	array;
+	int	n;
+
+	for (int i = 0; i < 10; i++)
+	{
+		n = rand() % 42;
+		array.fill(n);
+		std::cout << CYAN << n << " ";
+	}
+	std::cout << END << std::endl;
+	
+	for (int i = 0; i < 5; i++)
+		testValue(array, rand() % 42);
+}
 
 #endif
