@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:42:52 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/26 14:02:36 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/27 13:06:22 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <algorithm>
 # include <iostream>
 # include <cstdlib>
+// # include <array>
 
 # define BLUE	"\e[34m"
 # define CYAN	"\e[96m"
@@ -59,26 +60,26 @@ void	testContainerType(T& container)
 		std::cout << CYAN << n << " ";
 	}
 	std::cout << END << std::endl;
-	
+
 	for (int i = 0; i < 5; i++)
 		testValue(container, rand() % 42);
 }
 
-void	testArray(void)
-{
-	std::array<int, 10>	array;
-	int	n;
+// void	testArray(void)
+// {
+// 	std::array<int, 10>	array;
+// 	int	n;
 
-	for (int i = 0; i < 10; i++)
-	{
-		n = rand() % 42;
-		array.fill(n);
-		std::cout << CYAN << n << " ";
-	}
-	std::cout << END << std::endl;
-	
-	for (int i = 0; i < 5; i++)
-		testValue(array, rand() % 42);
-}
+// 	for (int i = 0; i < 10; i++)
+// 	{
+// 		n = rand() % 42;
+// 		array.fill(n);
+// 		std::cout << CYAN << n << " ";
+// 	}
+// 	std::cout << END << std::endl;
+
+// 	for (int i = 0; i < 5; i++)
+// 		testValue(array, rand() % 42);
+// }
 
 #endif
