@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:44:17 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/26 14:36:01 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/27 13:59:39 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,21 @@
 /*                          ORTHODOX CANONICAL FORM                           */
 /* ************************************************************************** */
 
-Span::Span(void) : _N(0) {
-	_vector.resize(_N);
-}
+Span::Span(void) : _size(0),_range() {}
 
-Span::Span(unsigned int size) : _N(size) {
-	_vector.resize(_N);
-}
+Span::Span(unsigned int size) : _size(size), _range(size) {}
 
-Span::Span(Span& src) : _N(src._N) {
-	_vector.erase(copy(	src._vector.begin(), src._vector.end(), _vector.begin()), _vector.end());
-	_vector.resize(_N);
-}
+Span::Span(Span& src) : _size(src._size), _range(src._range) {}
 
 Span::~Span(void) {}
 
 Span&	Span::operator=(const Span& src) {
-	(void) src;
+	if (this != &src)
+	{
+		_size = src._size;
+		this->_range.clear();
+		this->_range.insert(this->_range.end(), src._range.begin(), src._range.end());
+	}
 	return (*this);
 }
 
@@ -43,29 +41,45 @@ Span&	Span::operator=(const Span& src) {
 /* ************************************************************************** */
 
 void	Span::addNumber(unsigned int num) {
-	if (_vector.size() >= static_cast< unsigned long >(_N))
-		_vector.push_back(num);
+	if (_range.size() >= static_cast< unsigned long >(_size))
+		_range.push_back(num);
 	else
 		throw std::out_of_range("Span is already full.");
 }
 
 unsigned int	Span::shortestSpan() const {
-	// std::sort(_vector.begin(), _vector.end());
+	// std::sort(_range.begin(), _range.end());
 	return (1);
 }
 
 unsigned int	Span::longestSpan() const {
-	if (_vector.empty() || _vector.size() == 1)
+	if (_range.empty() || _range.size() == 1)
 		throw std::invalid_argument("Not enough elements to be compared");
 
-	return ( std::max_element(_vector.begin(), _vector.end())
-			 - std::min_element(_vector.begin(), _vector.end()) );
+	std::cout	<< "Max: " << *std::max_element(_range.begin(), _range.end())
+				<< "Min: " << *std::min_element(_range.begin(), _range.end())
+				<< std::endl;
+	return ( *std::max_element(_range.begin(), _range.end())
+			 - *std::min_element(_range.begin(), _range.end()) );
 }
 
 /* ************************************************************************** */
 /*                                 ACCESSORS                                  */
 /* ************************************************************************** */
 
-std::vector<unsigned int>	Span::getVector() {
-	return (this->_vector);
+const std::vector<int>	Span::getRange() const {
+	return (this->_range);
+}
+
+/* ************************************************************************** */
+/*                             OVERLOAD OPERATOR                              */
+/* ************************************************************************** */
+std::ostream &	operator<<(std::ostream &os, Span &src)
+{
+    for (	std::vector<int>::const_iterator it = src.getRange().begin();
+			it != src.getRange().end();
+			++it)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+    return (os);
 }

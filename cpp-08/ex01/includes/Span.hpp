@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:43:27 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/26 14:20:18 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/27 14:02:34 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 class Span
 {
 	private:
-		std::vector<unsigned int>	_vector;
-		int							_N;
+		unsigned int		_size;
+		std::vector<int>	_range;
 
 	public:
 		// Constructors and Destructor
@@ -40,11 +40,13 @@ class Span
 
 		// Public member function
 		void	addNumber(unsigned int num);
-		unsigned int	shortestSpan() const;
-		unsigned int	longestSpan() const;
+		unsigned int	shortestSpan(void) const;
+		unsigned int	longestSpan(void) const;
 
 		// Accessors
-		std::vector<unsigned int>	getVector();
+		const std::vector<int>	getRange(void) const;
 };
+
+std::ostream &	operator<<(std::ostream &os, Span &src);
 
 #endif
