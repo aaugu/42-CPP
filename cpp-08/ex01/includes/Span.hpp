@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:43:27 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/27 14:02:34 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/29 11:14:10 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,18 @@ class Span
 		Span&	operator=(const Span& src);
 
 		// Public member function
-		void	addNumber(unsigned int num);
-		unsigned int	shortestSpan(void) const;
-		unsigned int	longestSpan(void) const;
+		void	addNumber(int num);
+		int		shortestSpan(void) const;
+		int		longestSpan(void) const;
 
 		// Accessors
 		const std::vector<int>	getRange(void) const;
+
+		// Exception
+		class NotEnoughArguments : public std::exception {
+			public:
+				virtual const char *	what(void) const throw ();
+		};
 };
 
 std::ostream &	operator<<(std::ostream &os, Span &src);

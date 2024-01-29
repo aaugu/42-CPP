@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:44:13 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/27 13:53:38 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/29 11:57:19 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,8 @@ int	main(int ac, char **av)
 	{
 		int	n = std::rand() % 42;
 		span.addNumber(n);
-		std::cout << CYAN << n << " " << END;
 	}
-
-	std::cout << std::endl << "Span range:\n" << span << std::endl;
+	std::cout << CYAN << span << END << std::endl;
 
 	std::cout << BLUE "Trying to overflow collection" END << std::endl;
 	try {
@@ -49,18 +47,25 @@ int	main(int ac, char **av)
 	catch(const std::exception& e) {
 		std::cerr << RED << "Exception: "<< e.what() << END << std::endl;
 	}
-	std::cout << std::endl << std::endl;
 
 	std::cout << BLUE "Shortest Span:" END << std::endl;
-	std::cout << span.shortestSpan() << std::endl << std::endl;
+	try {
+		std::cout << span.shortestSpan() << std::endl << std::endl;
+	}
+	catch(const std::exception& e) {
+		std::cerr << RED << "Exception: "<< e.what() << END << std::endl;
+	}
+
 	std::cout << BLUE "Longest Span:" END << std::endl;
-	std::cout << span.longestSpan() << std::endl;
+		try {
+		std::cout << span.longestSpan() << std::endl;
+	}
+	catch(const std::exception& e) {
+		std::cerr << RED << "Exception: "<< e.what() << END << std::endl;
+	}
 
 	return (0);
 }
-	void	print(const int& n) {
-		std::cout << n << ' ';
-	}
 
 bool	invalidArguments(char* argument)
 {
