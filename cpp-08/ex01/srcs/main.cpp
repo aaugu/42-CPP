@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:44:13 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/29 11:57:19 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/30 09:53:26 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,18 @@ int	main(int ac, char **av)
 	int		size = std::atoi(av[1]);
 	Span	span(size);
 
-	std::cout << BLUE "Generating collection of numbers :" END << std::endl;
-	for (int i = 0; i < size; i++)
+	if (size > 0)
 	{
-		int	n = std::rand() % 42;
-		span.addNumber(n);
+		std::cout << BLUE "Generating collection of numbers..." END << std::endl;
+		for (int i = 0; i < size; i++)
+		{
+			int	n = std::rand() % 42;
+			span.addNumber(n);
+			std::cout << n << " ";
+		}
+	std::cout	<< std::endl << std::endl << BLUE "Span filled :" END << std::endl
+				<< CYAN << span << END << std::endl;
 	}
-	std::cout << CYAN << span << END << std::endl;
 
 	std::cout << BLUE "Trying to overflow collection" END << std::endl;
 	try {

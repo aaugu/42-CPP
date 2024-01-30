@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:44:30 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/29 15:17:44 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/30 09:37:41 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,12 @@ void	testMutantStack(void)
 	MutantStack<int> mstack;
 
 	std::cout << BLUE "Generating collection of integers:" END << std::endl;
-	mstack.push(3);
-	mstack.push(14);
-	mstack.push(15);
+	for (int i = 0; i < 5; i++)
+	{
+		int n = rand() % 42;
+		mstack.push(n);
+		std::cout << n << " ";
+	}
 
 	std::cout	<< "\n\nTop of stack : " << mstack.top()
 				<< " / Size : " << mstack.size() << std::endl;
@@ -49,10 +52,12 @@ void	testMutantStack(void)
 	std::cout << "Size : " << mstack.size() << std::endl;
 
 	std::cout << PURPLE "\nAdding elements..." END << std::endl;
-	mstack.push(15);
-	mstack.push(92);
-	mstack.push(65);
-	mstack.push(35);
+	for (int i = 0; i < 5; i++)
+	{
+		int n = rand() % 42;
+		mstack.push(n);
+		std::cout << n << " ";
+	}
 
 	MutantStack<int>::iterator it = mstack.begin();
 	MutantStack<int>::iterator ite = mstack.end();
@@ -60,7 +65,7 @@ void	testMutantStack(void)
 	++it;
 	--it;
 	(void) ite;
-	std::cout << "Iterating over collection" << std::endl;
+	std::cout << "\nIterating over collection" << std::endl;
 	while (it != ite)
 	{
 		std::cout << CYAN << *it << " " << END;

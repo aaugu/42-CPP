@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:44:17 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/29 11:17:48 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/30 09:48:14 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 Span::Span(void) : _size(0),_range() {}
 
-Span::Span(unsigned int size) : _size(size), _range(0) {}
+Span::Span(unsigned int size) : _size(size), _range() {}
 
 Span::Span(Span& src) : _size(src._size), _range(src._range) {}
 
@@ -43,6 +43,8 @@ Span&	Span::operator=(const Span& src) {
 /* ************************************************************************** */
 
 void	Span::addNumber(int num) {
+	if (_size == 0)
+		throw std::out_of_range("Cannot fill a span of size 0.\n");
 	if (_range.size() < _size)
 		_range.push_back(num);
 	else
@@ -52,6 +54,7 @@ void	Span::addNumber(int num) {
 int	Span::shortestSpan(void) const {
 	if (_range.size() <= 1)
 		throw Span::NotEnoughArguments();
+
 	std::vector<int> range = _range;
 	std::sort(range.begin(), range.end());
 
