@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:43:40 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/29 14:22:22 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/30 10:01:12 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ class MutantStack : public std::stack< T, Container >
 		MutantStack(void) {};
 		MutantStack(const MutantStack& src) { *this = src; };
 		~MutantStack(void) {};
-		MutantStack&	operator=(const MutantStack& src) { (void) src; return (*this); };
+		MutantStack&	operator=(const MutantStack& src) {
+			if (this != &src)
+				this->c = src.c;
+			return (*this);
+		};
 
 		// Iterators
 		typedef typename std::stack<T, Container>::container_type::iterator	iterator;
