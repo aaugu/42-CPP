@@ -6,12 +6,13 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:44:30 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/30 09:37:41 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/30 09:56:06 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <list>
+#include <cstdlib>
 #include "../includes/MutantStack.hpp"
 
 # define YELLOW	"\e[33m"
