@@ -6,12 +6,13 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:33:56 by aaugu             #+#    #+#             */
-/*   Updated: 2024/02/12 13:31:11 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/02/12 16:37:30 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exception>
 #include <ctime>
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -23,12 +24,12 @@
 /*                          ORTHODOX CANONICAL FORM                           */
 /* ************************************************************************** */
 
-BitcoinExchange::BitcoinExchange(void) {}
-
-BitcoinExchange::BitcoinExchange(const std::string dataFile) {
-	createDatabase(dataFile);
+BitcoinExchange::BitcoinExchange(void) {
+	createDatabase("data/data.csv");
 	minDateLimit = database.begin()->first;
 	maxDateLimit = database.end()->first;
+
+	std::cout << minDateLimit << " \n" << maxDateLimit << "\n";
 }
 
 // TO DO
@@ -106,9 +107,10 @@ void BitcoinExchange::createDatabase(std::string dataFile)
 		if (line == "date,exchange_rate")
 			continue ;
 		try {
-			checkInputFormat(line);
-			date = getDateInEpochTime(line.substr(0, line.find(',') - 1));
-			value = getValue(line.substr(line.find(',') + 1, line.size() - 1));
+			if (line.find(',') > line.size())
+				throw std::runtime_error("bad input => " + line);
+			date = getDateInEpochTime(line.substr(0, line.find(',')));
+			value = getValue(line.substr(line.find(','), line.size() - 1));
 			database[date] = value;
 		}
 		catch(const std::exception& e) {
@@ -143,7 +145,8 @@ time_t	BitcoinExchange::getDateInEpochTime(std::string date)
 	checkInputDate(date);
 	extractDateInfos(date, &year, &month, &day);
 	checkDateValidity(year, month, day);
-	return (convertToEpochDate(year, month, day));
+
+	return (convertToEpochDate(year, month, day) );
 }
 
 float	BitcoinExchange::getValue(std::string sValue)
@@ -176,7 +179,6 @@ time_t	BitcoinExchange::findClosestDate(time_t date)
 
 void BitcoinExchange::printBitcoinValue(time_t closestDate, std::string date, float value)
 {
-	(void) closestDate;
 	std::cout	<< date << " => " << value << " = " << value * database[closestDate]
 				<< std::endl;
 }
@@ -185,7 +187,21 @@ void BitcoinExchange::printBitcoinValue(time_t closestDate, std::string date, fl
 
 void	BitcoinExchange::checkInputDate(std::string date)
 {
-	(void) date;
+	if (date.size() != 10)
+		throw std::runtime_error("bad input => " + date);
+	size_t	yearSize = date.find('-', 0);
+	size_t	monthSize = date.find('-', yearSize + 1) - yearSize - 1;
+	size_t	daySize = date.size() - date.find('-', yearSize + 1) - 1;
+
+	if (yearSize != 4 || monthSize != 2 || daySize != 2)
+		throw std::runtime_error("bad input => " + date);
+
+	date.erase(std::remove(date.begin(), date.end(), '-'), date.end());
+	for (int i = 0; i < 8; i++)
+	{
+		if (std::isdigit(date[i]) == false)
+			throw std::runtime_error("bad input => " + date);
+	}
 }
 
 void	BitcoinExchange::extractDateInfos(std::string date, int* year, int *month, int* day)

@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:34:08 by aaugu             #+#    #+#             */
-/*   Updated: 2024/02/12 13:10:43 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/02/12 16:29:32 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ class BitcoinExchange
 	public:
 		// Orthodox Canonical Form
 		BitcoinExchange(void);
-		BitcoinExchange(const std::string dataFile);
 		BitcoinExchange(const BitcoinExchange& src);
 		~BitcoinExchange(void);
 		BitcoinExchange&	operator=(const BitcoinExchange& src);
