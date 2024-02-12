@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:34:08 by aaugu             #+#    #+#             */
-/*   Updated: 2024/02/12 16:29:32 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/02/12 18:47:30 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,12 @@
 # include <string>
 # include <map>
 
-enum errorTypes { DATE, VALUE, TYPO };
+enum types { INPUT, DATABASE };
 
 class BitcoinExchange
 {
 	private:
-		std::map<time_t, float>	database;
-		time_t	minDateLimit;
-		time_t	maxDateLimit;
+		std::map<time_t, double>	database;
 
 		// Constructor util function
 		void	createDatabase(std::string dataFile);
@@ -33,9 +31,9 @@ class BitcoinExchange
 		void	openFile(std::ifstream* iFS, std::string inputFile);
 		void	checkInputFormat(std::string line);
 		time_t	getDateInEpochTime(std::string date);
-		float	getValue(std::string value);
+		double	getValue(std::string value, int type);
 		time_t	findClosestDate(time_t date);
-		void	printBitcoinValue(time_t closestDate, std::string date, float value);
+		void	printBitcoinValue(time_t closestDate, std::string date, double value);
 
 		// Sub functions utils : Date
 		void	checkInputDate(std::string date);
@@ -48,8 +46,8 @@ class BitcoinExchange
 
 		// Sub functions utils : Value
 		void	checkInputValue(std::string value);
-		float	convertToValue(std::string value);
-		void	checkValueValidity(float value);
+		double	convertToValue(std::string value);
+		void	checkValueValidity(double value, int type);
 
 	public:
 		// Orthodox Canonical Form

@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:30:59 by aaugu             #+#    #+#             */
-/*   Updated: 2024/02/12 16:28:25 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/02/12 17:33:10 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,9 @@ int	main(int ac, char **av)
 	else
 		inputFile = av[1];
 
-	try {
-		BitcoinExchange	btc;
-	}
-	catch(const std::exception& e) {
-		std::cerr << "Error: "<< e.what() << std::endl;
-	}
+	BitcoinExchange	btc;
+
+	btc.bitcoinValues(inputFile);
 
 	return (0);
 }

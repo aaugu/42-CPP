@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:33:56 by aaugu             #+#    #+#             */
-/*   Updated: 2024/02/12 16:37:30 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/02/12 19:00:43 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@
 /* ************************************************************************** */
 
 BitcoinExchange::BitcoinExchange(void) {
-	createDatabase("data/data.csv");
-	minDateLimit = database.begin()->first;
-	maxDateLimit = database.end()->first;
-
-	std::cout << minDateLimit << " \n" << maxDateLimit << "\n";
+	try {
+		createDatabase("data/data.csv");
+	}
+	catch(const std::exception& e) {
+		std::cerr << "Error: "<< e.what() << std::endl;
+	}
 }
 
 // TO DO
@@ -52,7 +53,7 @@ BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& src) {
 // ---------------------- Main public member function ----------------------- //
 void BitcoinExchange::bitcoinValues(std::string inputFile)
 {
-	float		value = 0;
+	double		value = 0;
 	time_t		date = 0;
 	time_t		closestDate = 0;
 
@@ -67,14 +68,14 @@ void BitcoinExchange::bitcoinValues(std::string inputFile)
 	std::string		line;
 	while (std::getline(iFS, line))
 	{
-		if (line == "date | value")
+		if (line == "date | value" || line.empty())
 			continue ;
 		try {
 			checkInputFormat(line);
 			date = getDateInEpochTime(line.substr(0, line.find('|') - 1));
-			value = getValue(line.substr(line.find('|') + 1, line.size() - 1));
+			value = getValue(line.substr(line.find('|') + 2, line.size() - 1), INPUT);
 			closestDate = findClosestDate(date);
-			printBitcoinValue(closestDate, line.substr(0, 9), value);
+			printBitcoinValue(closestDate, line.substr(0, 10), value);
 		}
 		catch(const std::exception& e) {
 			std::cerr << "Error: " << e.what() << std::endl;
@@ -90,7 +91,7 @@ void BitcoinExchange::bitcoinValues(std::string inputFile)
 // ----------------------- Constructor util function ------------------------ //
 void BitcoinExchange::createDatabase(std::string dataFile)
 {
-	float		value = 0;
+	double		value = 0;
 	time_t		date = 0;
 
 	std::ifstream	iFS;
@@ -104,14 +105,14 @@ void BitcoinExchange::createDatabase(std::string dataFile)
 	std::string		line;
 	while (std::getline(iFS, line))
 	{
-		if (line == "date,exchange_rate")
+		if (line == "date,exchange_rate" || line.empty())
 			continue ;
 		try {
 			if (line.find(',') > line.size())
-				throw std::runtime_error("bad input => " + line);
-			date = getDateInEpochTime(line.substr(0, line.find(',')));
-			value = getValue(line.substr(line.find(','), line.size() - 1));
-			database[date] = value;
+				throw std::runtime_error( "bad input => " + line );
+			date = getDateInEpochTime( line.substr(0, line.find(',')) );
+			value = getValue( line.substr(line.find(',') + 1, line.size() - 1), DATABASE );
+			database.insert( std::pair<time_t, double>( date, value ) );
 		}
 		catch(const std::exception& e) {
 			std::cerr << "Error: " << e.what() << std::endl;
@@ -149,37 +150,45 @@ time_t	BitcoinExchange::getDateInEpochTime(std::string date)
 	return (convertToEpochDate(year, month, day) );
 }
 
-float	BitcoinExchange::getValue(std::string sValue)
+double	BitcoinExchange::getValue(std::string sValue, int type)
 {
 	checkInputValue(sValue);
-	float	value = convertToValue(sValue);
-	checkValueValidity(value);
+	double	value = convertToValue(sValue);
+	checkValueValidity(value, type);
+
 	return (value);
 }
 
 time_t	BitcoinExchange::findClosestDate(time_t date)
 {
-	time_t	diff = -1;
-	time_t	closestDate = database.begin()->first - date;
+	time_t	minDateLimit = database.begin()->first;
+	time_t	maxDateLimit = database.rbegin()->first;
+	// std::cout << minDateLimit << " " << maxDateLimit << " " << date << std::endl;
 
 	if (date < minDateLimit)
 		throw std::out_of_range("No data before this date.");
 	if (date > maxDateLimit)
-		return (database[maxDateLimit]);
+		return (maxDateLimit);
 
-	for (std::map<time_t, float>::iterator it= database.begin(); it != database.end(); ++it)
+	time_t	diff = -1;
+	time_t	closestDiff = date - database.begin()->first;
+	time_t	closestDate = database.begin()->first;
+
+	for (std::map<time_t, double>::iterator it = database.begin(); it != database.end(); ++it)
     {
-		diff = it->first - date;
-		if (diff > 0 && diff < closestDate)
+		diff = date - it->first;
+		if (diff >= 0 && diff < closestDiff)
+		{
+			closestDiff = diff;
 			closestDate = it->first;
+		}
 	}
-
 	return (closestDate);
 }
 
-void BitcoinExchange::printBitcoinValue(time_t closestDate, std::string date, float value)
+void BitcoinExchange::printBitcoinValue(time_t closestDate, std::string date, double value)
 {
-	std::cout	<< date << " => " << value << " = " << value * database[closestDate]
+	std::cout	<< date << " => " << value << " = " << value * database.at(closestDate)
 				<< std::endl;
 }
 
@@ -208,7 +217,7 @@ void	BitcoinExchange::extractDateInfos(std::string date, int* year, int *month, 
 {
 	char* 		endptr;
 
-	*year = static_cast<int>(strtol(date.substr(0, 3).c_str(), &endptr, 10));
+	*year = static_cast<int>(strtol(date.substr(0, 4).c_str(), &endptr, 10));
 	*month = static_cast<int>(strtol(date.substr(5, 6).c_str(), &endptr, 10));
 	*day = static_cast<int>(strtol(date.substr(8, 9).c_str(), &endptr, 10));
 }
@@ -217,7 +226,7 @@ void	BitcoinExchange::checkDateValidity(int year, int month, int day)
 {
 	if (	invalidMonth(month) ||
 			invalidDay(month, day) ||
-			(!isLeapYear(year) && month == 2 && day > 28) )
+			(isLeapYear(year) == false && month == 2 && day > 28) )
 		{
 			throw std::out_of_range("invalid date");
 		}
@@ -237,7 +246,14 @@ bool	BitcoinExchange::invalidDay(int month, int day)
 }
 
 bool BitcoinExchange::isLeapYear(int year) {
-    return ( (year % 100 != 0) || (year % 400 == 0) );
+    if (year % 400 == 0)
+        return true;
+    else if (year % 100 == 0)
+        return false;
+    else if (year % 4 == 0)
+        return true;
+    else
+        return false;
 }
 
 std::time_t	BitcoinExchange::convertToEpochDate(int year, int month, int day)
@@ -259,8 +275,12 @@ std::time_t	BitcoinExchange::convertToEpochDate(int year, int month, int day)
 void	BitcoinExchange::checkInputValue(std::string value)
 {
 	bool	dot = false;
+	size_t	i = 0;
 
-	for (size_t i = 0; i < value.size(); i++)
+	if (value[0] == '-')
+		i++;
+
+	while (i < value.size())
 	{
 		if (value[i] == '.' && dot == false)
 		{
@@ -271,18 +291,23 @@ void	BitcoinExchange::checkInputValue(std::string value)
 			throw std::runtime_error("bad input => invalid value");
 		if (std::isdigit(value[i]) == false)
 			throw std::runtime_error("bad input => invalid value");
+		i++;
 	}
 }
 
-float	BitcoinExchange::convertToValue(std::string value)
+double	BitcoinExchange::convertToValue(std::string value)
 {
 	char* 	endptr;
-	return (strtof(value.c_str(), &endptr));
+	return (strtod(value.c_str(), &endptr));
 }
 
-void	BitcoinExchange::checkValueValidity(float value) {
+void	BitcoinExchange::checkValueValidity(double value, int type) {
 	if (value < 0)
 		throw std::out_of_range("not a positive number.");
-	if (value > 1000)
-		throw std::out_of_range("too large a number.");
+
+	if (type == INPUT)
+	{
+		if (value > 1000)
+			throw std::out_of_range("too large a number.");
+	}
 }
