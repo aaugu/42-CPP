@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:33:56 by aaugu             #+#    #+#             */
-/*   Updated: 2024/02/12 19:00:43 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/02/13 11:32:02 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ BitcoinExchange::BitcoinExchange(void) {
 
 // TO DO
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) {
-	(void) src;
+	this->_database = src._database;
 }
 
 BitcoinExchange::~BitcoinExchange(void) {}
 
 // TO DO
 BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& src) {
-	(void) src;
-	return (*this);
+	this->_database = src._database;
+	return ( *this );
 }
 
 /* ************************************************************************** */
@@ -112,7 +112,7 @@ void BitcoinExchange::createDatabase(std::string dataFile)
 				throw std::runtime_error( "bad input => " + line );
 			date = getDateInEpochTime( line.substr(0, line.find(',')) );
 			value = getValue( line.substr(line.find(',') + 1, line.size() - 1), DATABASE );
-			database.insert( std::pair<time_t, double>( date, value ) );
+			_database.insert( std::pair<time_t, double>( date, value ) );
 		}
 		catch(const std::exception& e) {
 			std::cerr << "Error: " << e.what() << std::endl;
@@ -161,8 +161,8 @@ double	BitcoinExchange::getValue(std::string sValue, int type)
 
 time_t	BitcoinExchange::findClosestDate(time_t date)
 {
-	time_t	minDateLimit = database.begin()->first;
-	time_t	maxDateLimit = database.rbegin()->first;
+	time_t	minDateLimit = _database.begin()->first;
+	time_t	maxDateLimit = _database.rbegin()->first;
 	// std::cout << minDateLimit << " " << maxDateLimit << " " << date << std::endl;
 
 	if (date < minDateLimit)
@@ -171,10 +171,10 @@ time_t	BitcoinExchange::findClosestDate(time_t date)
 		return (maxDateLimit);
 
 	time_t	diff = -1;
-	time_t	closestDiff = date - database.begin()->first;
-	time_t	closestDate = database.begin()->first;
+	time_t	closestDiff = date - _database.begin()->first;
+	time_t	closestDate = _database.begin()->first;
 
-	for (std::map<time_t, double>::iterator it = database.begin(); it != database.end(); ++it)
+	for (std::map<time_t, double>::iterator it = _database.begin(); it != _database.end(); ++it)
     {
 		diff = date - it->first;
 		if (diff >= 0 && diff < closestDiff)
@@ -188,7 +188,7 @@ time_t	BitcoinExchange::findClosestDate(time_t date)
 
 void BitcoinExchange::printBitcoinValue(time_t closestDate, std::string date, double value)
 {
-	std::cout	<< date << " => " << value << " = " << value * database.at(closestDate)
+	std::cout	<< date << " => " << value << " = " << value * _database.at(closestDate)
 				<< std::endl;
 }
 

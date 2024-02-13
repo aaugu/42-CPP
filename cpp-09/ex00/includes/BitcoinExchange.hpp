@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:34:08 by aaugu             #+#    #+#             */
-/*   Updated: 2024/02/12 18:47:30 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/02/13 11:28:48 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ enum types { INPUT, DATABASE };
 class BitcoinExchange
 {
 	private:
-		std::map<time_t, double>	database;
+		std::map<time_t, double>	_database;
 
 		// Constructor util function
 		void	createDatabase(std::string dataFile);
