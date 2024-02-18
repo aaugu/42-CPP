@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:35:24 by aaugu             #+#    #+#             */
-/*   Updated: 2024/02/19 00:18:46 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/02/19 00:22:32 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ void	PmergeMe::printRand(std::string period, int sorted)
 {
 	std::cout << period;
 	if (sorted)
-		/*std::rand() % 2 ? */printElements(sortedList)/* : printElements(sortedVector)*/;
+		std::rand() % 2 ? printElements(sortedList) : printElements(sortedVector);
 	else
-		/*std::rand() % 2 ? */printElements(list)/* : printElements(vector)*/;
+		std::rand() % 2 ? printElements(list) : printElements(vector);
 	std::cout << std::endl;
 }
 
