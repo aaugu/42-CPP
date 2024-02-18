@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:31:25 by aaugu             #+#    #+#             */
-/*   Updated: 2024/02/18 20:49:13 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/02/19 00:19:11 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ int	main(int ac, char** av)
 
 		pmergeMe.printRand("Before:  ", UNSORTED);
 		std::clock_t	timeList = pmergeMe.runSorting(LIST);
-		// std::clock_t	timeVector = pmergeMe.runSorting(VECTOR);
+		std::clock_t	timeVector = pmergeMe.runSorting(VECTOR);
 		pmergeMe.printRand("After:   ", SORTED);
 
 		printTimeResult(timeList, nbElements, "list");
-		// printTimeResult(timeVector, nbElements, "vector");
+		printTimeResult(timeVector, nbElements, "vector");
 	}
 	catch(const std::exception& e) {
 		std::cerr << "Error: " << e.what() << std::endl;

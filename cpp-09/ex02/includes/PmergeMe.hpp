@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:34:54 by aaugu             #+#    #+#             */
-/*   Updated: 2024/02/19 00:04:27 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/02/19 00:13:06 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,18 @@ class PmergeMe
 		// ----------------------------- Vector ----------------------------- //
 		void	sortVector(void);
 		// Vector - Utils
-		bool	isVectorSorted(void);
+		bool	isVectorSorted(std::vector<int>& vector);
 		void	copyVector(std::vector<int>& src, std::vector<int>& dest);
-		// Vector = Sorting Algorithm
-		void	mergeInsertionSort(std::vector<int>& vector);
+		// Vector - Sorting Algorithm
+		void	mergeInsertionSort(std::vector<int>& sequence, std::vector<int>& sortedVector);
+		void	splitIntoPairs( std::vector< std::pair<int, int> >& pairs, std::vector<int>& sequence);
+		void	sortPairs(std::vector< std::pair<int, int> >& pairs);
+		void	extractHighestValues(std::vector< std::pair<int, int> >& pairs, std::vector<int>& sequence);
+		void	mergePendingsToSortedVector(std::vector< std::pair<int, int> >& pairs, std::vector<int>& mainSequence);
+		int		getPairFirst(std::vector< std::pair<int, int> >& pairs, int nbToSearch);
+		void	insertIntoSequence(std::vector<int>& sequence, int nbToInsert);
+		std::vector<int>::iterator	binarySearchPosition(std::vector<int>& sequence, int nbToInsert);
+		int		getMiddlePosition(std::vector<int>::iterator begin, std::vector<int>::iterator end);
 
 		// Print list or vector
 		template < typename T >
