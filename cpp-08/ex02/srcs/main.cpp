@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:44:30 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/30 10:06:48 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/30 13:31:47 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	testList(void);
 
 int	main(void)
 {
-	// srand(time(NULL));
 	std::cout << GREEN "Mutant Stack :" END << std::endl;
 	testMutantStack();
 	std::cout << std::endl << std::endl << GREEN "Lists :" END << std::endl;
@@ -40,17 +39,17 @@ void	testMutantStack(void)
 {
 	MutantStack<int> mstack;
 
-	std::cout << BLUE "Generating collection of integers:" END << std::endl;
-	for (int i = 0; i < 10; i++)
-	{
-		int n = rand() % 42;
-		mstack.push(n);
-		std::cout << n << " ";
-	}
+	std::cout << BLUE "Generating collection of integers... " END;
+	mstack.push(3);
+	mstack.push(14);
+	mstack.push(15);
+	mstack.push(92);
+	mstack.push(65);
+	mstack.push(35);
 
-	std::cout	<< "\n\nTop of stack : " << mstack.top()
-				<< " / Size : " << mstack.size() << std::endl;
-	std::cout << PURPLE "\nRemoving top of stack..." END << std::endl;
+	std::cout	<< "Top of stack : " << mstack.top()
+				<< " / Size : " << mstack.size();
+	std::cout << BLUE "\nRemoving top of stack... " END;
 	mstack.pop();
 	std::cout << "Size : " << mstack.size() << std::endl;
 
@@ -59,7 +58,7 @@ void	testMutantStack(void)
 
 	++it;
 	--it;
-	std::cout << "\nIterating over collection" << std::endl;
+	std::cout << BLUE "Iterating over collection : " END;
 	while (it != ite)
 	{
 		std::cout << CYAN << *it << " " << END;
@@ -67,23 +66,23 @@ void	testMutantStack(void)
 	}
 
 	std::stack<int> s(mstack);
-	std::cout << "\n\nTop of copy stack : " << s.top();
+	std::cout << BLUE "\nTop of copy stack : " << CYAN << s.top() << END;
 }
 
 void	testList(void)
 {
 	std::list<int> mstack;
 
-	std::cout << BLUE "Generating collection of integers:" END << std::endl;
-	for (int i = 0; i < 10; i++)
-	{
-		int n = rand() % 42;
-		mstack.push_back(n);
-		std::cout << CYAN << n << " " << END;
-	}
+	std::cout << BLUE "Generating collection of integers... " END;
+	mstack.push_back(3);
+	mstack.push_back(14);
+	mstack.push_back(15);
+	mstack.push_back(92);
+	mstack.push_back(65);
+	mstack.push_back(35);
 
-	std::cout << std::endl << "Size : " << mstack.size() << std::endl;
-	std::cout << PURPLE "\nRemoving top of stack..." END << std::endl;
+	std::cout << "Size : " << mstack.size() << std::endl;
+	std::cout << BLUE "Removing top of stack... " END;
 	mstack.pop_back();
 	std::cout << "Size : " << mstack.size() << std::endl;
 
@@ -92,7 +91,7 @@ void	testList(void)
 
 	++it;
 	--it;
-	std::cout << "Iterating over collection" << std::endl;
+	std::cout << BLUE "Iterating over collection : " END;
 	while (it != ite)
 	{
 		std::cout << CYAN << *it << " " << END;

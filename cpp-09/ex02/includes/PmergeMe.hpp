@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:34:54 by aaugu             #+#    #+#             */
-/*   Updated: 2024/02/19 00:13:06 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/02/19 11:39:23 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 # define SORTED 1
 # define LIST 0
 # define VECTOR 1
-# define MAIN 0
-# define PENDING 1
 
 class PmergeMe
 {

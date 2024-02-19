@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:31:25 by aaugu             #+#    #+#             */
-/*   Updated: 2024/02/19 00:19:11 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/02/19 13:31:33 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 #include <stdlib.h>
 #include "../includes/PmergeMe.hpp"
 
+# define RED  "\e[31m"
+# define CYAN "\e[96m"
+# define END  "\e[0m"
+
 void	checkInput(int nbElements, char** elements);
 bool	isPositiveNumber(std::string element);
 int*	getNumbersToSort(int nbElements, char** elements);
@@ -28,7 +32,7 @@ void	printTimeResult(std::clock_t time, int nbElements, std::string containerTyp
 int	main(int ac, char** av)
 {
 	if (ac < 2) {
-		std::cout << "Usage: ./PmergeMe <numbers_to_sort>" << std::endl;
+		std::cout << CYAN "Usage: ./PmergeMe <numbers_to_sort>" END << std::endl;
 		return (1);
 	}
 
@@ -51,7 +55,7 @@ int	main(int ac, char** av)
 		printTimeResult(timeVector, nbElements, "vector");
 	}
 	catch(const std::exception& e) {
-		std::cerr << "Error: " << e.what() << std::endl;
+		std::cerr << RED << "Error: " << e.what() << END << std::endl;
 	}
 
 }
@@ -125,6 +129,8 @@ void	printTimeResult(std::clock_t time, int nbElements, std::string containerTyp
 {
 	std::cout	<< std::fixed << std::setprecision(5)
 				<< "Time to process a range of " << nbElements
-				<< " elements with std::" << containerType << ": "
-				<< 1000.0 * time / CLOCKS_PER_SEC << " us" << std::endl;
+				<< " elements with std::" << containerType;
+	if (containerType == "list")
+		std::cout << "  ";
+	std::cout	<< " : "	<< 100000.0 * time / CLOCKS_PER_SEC << " us" << std::endl;
 }

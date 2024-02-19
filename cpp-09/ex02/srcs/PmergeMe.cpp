@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:35:24 by aaugu             #+#    #+#             */
-/*   Updated: 2024/02/19 00:22:32 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/02/19 11:35:19 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,16 @@ PmergeMe::PmergeMe(int* numbersToSort, int nbElements) {
 	}
 }
 
-PmergeMe::PmergeMe(const PmergeMe& src) : list(src.list), vector(src.vector) {}
+PmergeMe::PmergeMe(const PmergeMe& src) :	list(src.list), vector(src.vector),
+											sortedList(src.sortedList), sortedVector(src.sortedVector) {}
 
 PmergeMe::~PmergeMe(void) {}
 
 PmergeMe&	PmergeMe::operator=(const PmergeMe& src) {
-	(void) src;
-	// copyList(src.list, list);
-	// copyVector(src.vector, vector);
+	this->list = src.list;
+	this->sortedList = src.sortedList;
+	this->vector = src.vector;
+	this->sortedVector = src.sortedVector;
 	return ( *this );
 }
 
@@ -80,9 +82,6 @@ void	PmergeMe::printRand(std::string period, int sorted)
 
 void	PmergeMe::sortList(void)
 {
-	if (isListSorted(list))
-		return ( copyList(list, sortedList) );
-
 	mergeInsertionSort(list, sortedList);
 
 	if ( isListSorted(sortedList) == false )
@@ -127,7 +126,7 @@ void	PmergeMe::mergeInsertionSort(std::list<int>& sequence, std::list<int>& sort
 		mergeInsertionSort(highestValues, sortedList);
 		mergePendingsToSortedList(pairs, sortedList);
 	}
-	else
+	else if (pairs.size() == 1)
 	{
 		sortedList.push_back(pairs.begin()->first);
 		sortedList.push_back(pairs.begin()->second);
@@ -204,6 +203,9 @@ int	PmergeMe::getPairFirst(std::list< std::pair<int, int> >& pairs, int nbToSear
 
 void	PmergeMe::insertIntoSequence(std::list<int>& sequence, int nbToInsert)
 {
+	if (sequence.empty())
+		return ( sequence.push_back(nbToInsert) );
+
 	std::list<int>::iterator	itb = sequence.begin();
 	std::list<int>::iterator	ite = sequence.end();
 	ite--;
@@ -265,9 +267,6 @@ int	PmergeMe::getMiddlePosition(std::list<int>::iterator begin, std::list<int>::
 
 void	PmergeMe::sortVector(void)
 {
-	if (isVectorSorted(vector))
-		return ( copyVector(vector, sortedVector) );
-
 	mergeInsertionSort(vector, sortedVector);
 
 	if ( isVectorSorted(sortedVector) == false )
@@ -311,7 +310,7 @@ void	PmergeMe::mergeInsertionSort(std::vector<int>& sequence, std::vector<int>& 
 		mergeInsertionSort(highestValues, sortedVector);
 		mergePendingsToSortedVector(pairs, sortedVector);
 	}
-	else
+	else if ( pairs.size() == 1 )
 	{
 		sortedVector.push_back(pairs.begin()->first);
 		sortedVector.push_back(pairs.begin()->second);
@@ -388,9 +387,11 @@ int	PmergeMe::getPairFirst(std::vector< std::pair<int, int> >& pairs, int nbToSe
 
 void	PmergeMe::insertIntoSequence(std::vector<int>& sequence, int nbToInsert)
 {
+	if (sequence.empty())
+		return ( sequence.push_back(nbToInsert) );
+
 	std::vector<int>::iterator	itb = sequence.begin();
-	std::vector<int>::iterator	ite = sequence.end();
-	ite--;
+	std::vector<int>::iterator	ite = sequence.end() - 1;
 
 	if (nbToInsert < *itb)
 		sequence.insert(itb, nbToInsert);
@@ -407,8 +408,7 @@ void	PmergeMe::insertIntoSequence(std::vector<int>& sequence, int nbToInsert)
 std::vector<int>::iterator	PmergeMe::binarySearchPosition(std::vector<int>& sequence, int nbToInsert)
 {
 	std::vector<int>::iterator	i = sequence.begin();
-	std::vector<int>::iterator	j = sequence.end();
-	j--;
+	std::vector<int>::iterator	j = sequence.end() - 1;
 	std::vector<int>::iterator	middleIt;
 
 	int	middle = getMiddlePosition(i, j);
@@ -445,6 +445,7 @@ int	PmergeMe::getMiddlePosition(std::vector<int>::iterator begin, std::vector<in
 	return (count / 2);
 }
 
+// ----------------------- Print Utils (for debug) -------------------------- //
 
 template < typename T >
 void	printSequence(T& sequence, std::string title)

@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:34:08 by aaugu             #+#    #+#             */
-/*   Updated: 2024/02/13 11:28:48 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/02/19 13:31:45 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include <ctime>
 # include <string>
 # include <map>
+
+# define RED  "\e[31m"
+# define CYAN "\e[96m"
+# define END  "\e[0m"
 
 enum types { INPUT, DATABASE };
 
@@ -41,7 +45,7 @@ class BitcoinExchange
 		bool	isLeapYear(int year);
 		bool	invalidMonth(int month);
 		bool	invalidDay(int month, int day);
-		void	checkDateValidity(int year, int month, int day);
+		void	checkDateValidity(int year, int month, int day, std::string date);
 		time_t	convertToEpochDate(int year, int month, int day);
 
 		// Sub functions utils : Value

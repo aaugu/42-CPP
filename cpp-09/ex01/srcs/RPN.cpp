@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:35:47 by aaugu             #+#    #+#             */
-/*   Updated: 2024/02/13 14:14:42 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/02/19 11:44:32 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@
 
 RPN::RPN(void) {}
 
-RPN::RPN(const RPN& src) {
-	this->_elements = src._elements;
-}
+RPN::RPN(const RPN& src) : _elements(src._elements) {}
 
 RPN::~RPN(void) {}
 
@@ -99,8 +97,6 @@ void	RPN::_setIntermediateResult(char operatorType)
 	int	a = _elements.top();
 	_elements.pop();
 
-	// std::cout << a << operatorType << b << std::endl;
-
 	int result = _makeOperation(a, b, operatorType);
 	_elements.push(result);
 }
@@ -119,7 +115,11 @@ int	RPN::_makeOperation(int a, int b, char operatorType)
 			return (_divideOperation(a, b));
 
 		default:
-			throw std::runtime_error(operatorType + ": invalid operator");
+		{
+			std::stringstream ss;
+			ss << operatorType << ": invalid operator";
+			throw std::runtime_error(ss.str());
+		}
 	}
 
 }

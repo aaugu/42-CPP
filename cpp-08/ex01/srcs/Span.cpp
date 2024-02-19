@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:44:17 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/30 09:48:14 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/30 13:44:53 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 /*                          ORTHODOX CANONICAL FORM                           */
 /* ************************************************************************** */
 
-Span::Span(void) : _size(0),_range() {}
+Span::Span(void) : _size(0), _range(0) {}
 
-Span::Span(unsigned int size) : _size(size), _range() {}
+Span::Span(unsigned int size) : _size(size), _range(0) {}
 
-Span::Span(Span& src) : _size(src._size), _range(src._range) {}
+Span::Span(const Span& src) : _size(src._size), _range(src._range) {}
 
 Span::~Span(void) {}
 

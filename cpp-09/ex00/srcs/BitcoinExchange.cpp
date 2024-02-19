@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:33:56 by aaugu             #+#    #+#             */
-/*   Updated: 2024/02/13 11:32:02 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/02/19 13:18:04 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <sstream>
 #include <fstream>
 #include <cstdlib>
+#include <errno.h>
+#include <cstring>
 #include "../includes/BitcoinExchange.hpp"
 
 /* ************************************************************************** */
@@ -25,22 +27,13 @@
 /* ************************************************************************** */
 
 BitcoinExchange::BitcoinExchange(void) {
-	try {
-		createDatabase("data/data.csv");
-	}
-	catch(const std::exception& e) {
-		std::cerr << "Error: "<< e.what() << std::endl;
-	}
+	createDatabase("data/data.csv");
 }
 
-// TO DO
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) {
-	this->_database = src._database;
-}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) : _database(src._database) {}
 
 BitcoinExchange::~BitcoinExchange(void) {}
 
-// TO DO
 BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& src) {
 	this->_database = src._database;
 	return ( *this );
@@ -58,12 +51,7 @@ void BitcoinExchange::bitcoinValues(std::string inputFile)
 	time_t		closestDate = 0;
 
 	std::ifstream	iFS;
-	try {
-		openFile(&iFS, inputFile);
-	}
-	catch(const std::exception& e) {
-		std::cerr << "Error: " << e.what() << std::endl;
-	}
+	openFile(&iFS, inputFile);
 
 	std::string		line;
 	while (std::getline(iFS, line))
@@ -78,7 +66,7 @@ void BitcoinExchange::bitcoinValues(std::string inputFile)
 			printBitcoinValue(closestDate, line.substr(0, 10), value);
 		}
 		catch(const std::exception& e) {
-			std::cerr << "Error: " << e.what() << std::endl;
+			std::cerr << RED << "Error: " << e.what() << END << std::endl;
 			continue ;
 		}
 	}
@@ -88,52 +76,43 @@ void BitcoinExchange::bitcoinValues(std::string inputFile)
 /*                          PRIVATE MEMBER FUNCTIONS                          */
 /* ************************************************************************** */
 
-// ----------------------- Constructor util function ------------------------ //
+// --------------------------- Constructor utils ---------------------------- //
+
 void BitcoinExchange::createDatabase(std::string dataFile)
 {
 	double		value = 0;
 	time_t		date = 0;
 
 	std::ifstream	iFS;
-	try {
-		openFile(&iFS, dataFile);
-	}
-	catch(const std::exception& e) {
-		std::cerr << "Error: " << e.what() << std::endl;
-	}
+	openFile(&iFS, dataFile);
 
 	std::string		line;
 	while (std::getline(iFS, line))
 	{
 		if (line == "date,exchange_rate" || line.empty())
 			continue ;
-		try {
-			if (line.find(',') > line.size())
-				throw std::runtime_error( "bad input => " + line );
-			date = getDateInEpochTime( line.substr(0, line.find(',')) );
-			value = getValue( line.substr(line.find(',') + 1, line.size() - 1), DATABASE );
-			_database.insert( std::pair<time_t, double>( date, value ) );
-		}
-		catch(const std::exception& e) {
-			std::cerr << "Error: " << e.what() << std::endl;
-			continue ;
-		}
+		if (line.find(',') == std::string::npos)
+			throw std::runtime_error( "could not create database: bad input => " + line );
+		date = getDateInEpochTime( line.substr(0, line.find(',')) );
+		value = getValue( line.substr(line.find(',') + 1, line.size() - 1), DATABASE );
+		_database.insert( std::pair<time_t, double>( date, value ) );
 	}
 }
 
 // ---------------------- Main function sub functions ----------------------- //
+
 void	BitcoinExchange::openFile(std::ifstream* iFS, std::string inputFile)
 {
 	iFS->open(inputFile.c_str(), std::fstream::in);
 	if (!iFS->good())
-		throw std::runtime_error("could not open file.");
+		throw std::runtime_error(inputFile + ": " + strerror(errno));
 }
 
 void	BitcoinExchange::checkInputFormat(std::string line)
 {
-	if (	line.find('|') > line.size() &&
-			line[line.find('|') - 1] != ' ' &&
-			line[line.find('|') + 1] != ' ' 	)
+	if (line.find('|') == std::string::npos)
+		throw std::runtime_error("bad input => " + line);
+	if (line[line.find('|') - 1] != ' ' && line[line.find('|') + 1] != ' ')
 		throw std::runtime_error("bad input => " + line);
 }
 
@@ -145,7 +124,7 @@ time_t	BitcoinExchange::getDateInEpochTime(std::string date)
 
 	checkInputDate(date);
 	extractDateInfos(date, &year, &month, &day);
-	checkDateValidity(year, month, day);
+	checkDateValidity(year, month, day, date);
 
 	return (convertToEpochDate(year, month, day) );
 }
@@ -163,7 +142,6 @@ time_t	BitcoinExchange::findClosestDate(time_t date)
 {
 	time_t	minDateLimit = _database.begin()->first;
 	time_t	maxDateLimit = _database.rbegin()->first;
-	// std::cout << minDateLimit << " " << maxDateLimit << " " << date << std::endl;
 
 	if (date < minDateLimit)
 		throw std::out_of_range("No data before this date.");
@@ -222,13 +200,13 @@ void	BitcoinExchange::extractDateInfos(std::string date, int* year, int *month, 
 	*day = static_cast<int>(strtol(date.substr(8, 9).c_str(), &endptr, 10));
 }
 
-void	BitcoinExchange::checkDateValidity(int year, int month, int day)
+void	BitcoinExchange::checkDateValidity(int year, int month, int day, std::string date)
 {
 	if (	invalidMonth(month) ||
 			invalidDay(month, day) ||
 			(isLeapYear(year) == false && month == 2 && day > 28) )
 		{
-			throw std::out_of_range("invalid date");
+			throw std::out_of_range(": invalid date => " + date);
 		}
 }
 

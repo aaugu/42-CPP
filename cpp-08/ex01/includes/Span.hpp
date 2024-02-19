@@ -6,7 +6,7 @@
 /*   By: aaugu <aaugu@student.42lausanne.ch>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:43:27 by aaugu             #+#    #+#             */
-/*   Updated: 2024/01/29 11:14:10 by aaugu            ###   ########.fr       */
+/*   Updated: 2024/01/30 13:44:30 by aaugu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define RED  	"\e[31m"
 # define YELLOW	"\e[33m"
 # define BLUE	"\e[34m"
+# define PURPLE	"\e[35m"
 # define GREEN	"\e[92m"
 # define CYAN	"\e[96m"
 # define END	"\e[0m"
@@ -28,11 +29,12 @@ class Span
 		unsigned int		_size;
 		std::vector<int>	_range;
 
+
 	public:
 		// Constructors and Destructor
 		Span(void);
 		Span(unsigned int size);
-		Span(Span& src);
+		Span(const Span& src);
 		~Span();
 
 		// Overloading operator
@@ -42,6 +44,16 @@ class Span
 		void	addNumber(int num);
 		int		shortestSpan(void) const;
 		int		longestSpan(void) const;
+
+		// Template function
+		template <typename T>
+		void	addRange(typename T::iterator begin, typename T::iterator end)
+		{
+			if (std::distance(begin, end) > static_cast<int>(_size - _range.size()))
+				throw std::range_error("Range too big to be added.");
+			else if (std::distance(begin, end) > 0)
+				this->_range.insert(this->_range.end(), begin, end);
+		}
 
 		// Accessors
 		const std::vector<int>	getRange(void) const;
